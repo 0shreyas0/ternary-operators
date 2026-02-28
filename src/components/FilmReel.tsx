@@ -3,12 +3,22 @@ import { motion } from 'framer-motion';
 import { FILM_REEL } from '../constants';
 import lionKingImg from '../assets/lionking.png';
 import fantasiaImg from '../assets/fantasia.png';
+import cinderellaImg from '../assets/cindrella.png';
+import toyStoryImg from '../assets/toy story.png';
+import frozenImg from '../assets/frozen.png';
+import moanaImg from '../assets/Moana.png';
+import snowWhiteImg from '../assets/snow white.png';
 
 // Patch Lion King with local asset
 const PATCHED_REEL = FILM_REEL.map(f =>
   f.title === 'The Lion King' ? { ...f, image: lionKingImg }
     : f.title === 'Fantasia' ? { ...f, image: fantasiaImg }
-      : f
+      : f.title === 'Cinderella' ? { ...f, image: cinderellaImg }
+        : f.title === 'Toy Story' ? { ...f, image: toyStoryImg }
+          : f.title === 'Frozen' ? { ...f, image: frozenImg }
+            : f.title === 'Moana' ? { ...f, image: moanaImg }
+              : f.title === 'Snow White' ? { ...f, image: snowWhiteImg }
+                : f
 );
 const LOOP_ITEMS = [...PATCHED_REEL, ...PATCHED_REEL, ...PATCHED_REEL];
 
