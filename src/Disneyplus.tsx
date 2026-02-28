@@ -370,20 +370,53 @@ export default function DisneyPlusSection() {
           background: #1a78ff;
         }
 
+        .disneyplus-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+          padding: 0 clamp(20px, 5vw, 72px);
+          margin-bottom: 48px;
+        }
+
+        .disneyplus-grid {
+          display: grid;
+          grid-template-columns: 1fr 420px;
+          gap: 48px;
+          padding: 0 clamp(20px, 5vw, 72px);
+          align-items: center;
+        }
+
+        .disneyplus-image {
+          position: relative;
+          border-radius: 20px;
+          overflow: hidden;
+          height: 560px;
+        }
+
+        @media (max-width: 1024px) {
+          .disneyplus-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 16px;
+          }
+          .disneyplus-header-desc {
+            text-align: left !important;
+          }
+          .disneyplus-grid {
+            grid-template-columns: 1fr;
+            gap: 32px;
+          }
+          .disneyplus-image {
+            height: clamp(300px, 50vw, 400px);
+          }
+        }
+
         .thumb-strip::-webkit-scrollbar { display: none; }
         .thumb-strip { -ms-overflow-style: none; scrollbar-width: none; }
       `}</style>
 
             {/* ── Section header ── */}
-            <div
-                style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "flex-end",
-                    padding: "0 clamp(20px, 5vw, 72px)",
-                    marginBottom: 48,
-                }}
-            >
+            <div className="disneyplus-header">
                 <div>
                     <p
                         style={{
@@ -412,6 +445,7 @@ export default function DisneyPlusSection() {
                     </h2>
                 </div>
                 <p
+                    className="disneyplus-header-desc"
                     style={{
                         color: "rgba(255,255,255,0.35)",
                         fontSize: 13,
@@ -427,24 +461,9 @@ export default function DisneyPlusSection() {
             </div>
 
             {/* ── 2-column layout: image | text ── */}
-            <div
-                style={{
-                    display: "grid",
-                    gridTemplateColumns: "1fr 420px",
-                    gap: 48,
-                    padding: "0 clamp(20px, 5vw, 72px)",
-                    alignItems: "center",
-                }}
-            >
+            <div className="disneyplus-grid">
                 {/* ── LEFT: Image ── */}
-                <div
-                    style={{
-                        position: "relative",
-                        borderRadius: 20,
-                        overflow: "hidden",
-                        height: 560,
-                    }}
-                >
+                <div className="disneyplus-image">
                     {SHOWS.map((s, i) => (
                         <ShowImage key={s.id} show={s} active={i === active} />
                     ))}

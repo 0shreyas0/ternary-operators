@@ -520,16 +520,45 @@ export default function MerchSection() {
           border-color: rgba(255,255,255,0.38);
           color: #fff;
         }
+
+        .merch-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+          padding: 0 clamp(20px, 5vw, 72px);
+          margin-bottom: 44px;
+        }
+
+        .merch-stats {
+          display: flex;
+          justify-content: center;
+          gap: clamp(24px, 6vw, 72px);
+          padding: 40px clamp(20px, 5vw, 72px) 0;
+          border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        @media (max-width: 768px) {
+          .merch-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 24px;
+          }
+          .merch-header-desc {
+            max-width: 100% !important;
+          }
+          .merch-stats {
+            flex-wrap: wrap;
+            row-gap: 32px;
+          }
+          .merch-stats > div {
+            flex: 1 1 40%;
+            min-width: 120px;
+          }
+        }
       `}</style>
 
             {/* ── Header ────────────────────────────────────────────────────── */}
-            <div style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "flex-end",
-                padding: "0 clamp(20px, 5vw, 72px)",
-                marginBottom: 44,
-            }}>
+            <div className="merch-header">
 
                 <div>
                     <p style={{
@@ -547,7 +576,7 @@ export default function MerchSection() {
                     }}>
                         Magic You Can Hold.
                     </h2>
-                    <p style={{
+                    <p className="merch-header-desc" style={{
                         marginTop: 8, fontSize: 13, lineHeight: 1.7,
                         color: "rgba(255,255,255,0.3)", maxWidth: 380,
                     }}>
@@ -648,13 +677,7 @@ export default function MerchSection() {
             </div>
 
             {/* ── Stats bar ─────────────────────────────────────────────────── */}
-            <div style={{
-                display: "flex",
-                justifyContent: "center",
-                gap: "clamp(24px, 6vw, 72px)",
-                padding: "40px clamp(20px, 5vw, 72px) 0",
-                borderTop: "1px solid rgba(255,255,255,0.05)",
-            }}>
+            <div className="merch-stats">
                 {[
                     { value: "50,000+", label: "Products" },
                     { value: "195", label: "Countries" },

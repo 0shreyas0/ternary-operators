@@ -408,6 +408,79 @@ export default function DisneyParksSection() {
           to   { width: 40px; }
         }
 
+        .parks-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+          padding: 0 clamp(20px, 5vw, 72px);
+          margin-bottom: 48px;
+          position: relative;
+          z-index: 1;
+        }
+
+        .parks-grid {
+          display: grid;
+          grid-template-columns: 300px 1fr 380px;
+          gap: 0;
+          padding: 0 clamp(20px, 5vw, 72px);
+          min-height: 560px;
+          position: relative;
+          z-index: 1;
+        }
+
+        .parks-left {
+          display: flex;
+          flex-direction: column;
+          border-right: 1px solid rgba(255,255,255,0.07);
+          padding-right: 24px;
+        }
+
+        .parks-center {
+          position: relative;
+          margin: 0 24px;
+          border-radius: 20px;
+          overflow: hidden;
+          min-height: 520px;
+        }
+
+        .parks-right {
+          border-left: 1px solid rgba(255,255,255,0.07);
+          padding-left: 32px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        @media (max-width: 1150px) {
+          .parks-grid {
+            grid-template-columns: 1fr;
+            gap: 40px;
+          }
+          .parks-left {
+            border-right: none;
+            padding-right: 0;
+            max-height: 400px; /* Constrain list height on mobile */
+          }
+          .parks-center {
+            margin: 0;
+            min-height: 480px;
+          }
+          .parks-right {
+            border-left: none;
+            padding-left: 0;
+            border-top: 1px solid rgba(255,255,255,0.07);
+            padding-top: 32px;
+          }
+          .parks-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 16px;
+          }
+          .parks-header-desc {
+            text-align: left !important;
+          }
+        }
+
         .parks-list::-webkit-scrollbar { display: none; }
         .parks-list { -ms-overflow-style: none; scrollbar-width: none; }
 
@@ -479,15 +552,7 @@ export default function DisneyParksSection() {
       `}</style>
 
       {/* ── Section header ── */}
-      <div style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "flex-end",
-        padding: "0 clamp(20px, 5vw, 72px)",
-        marginBottom: 48,
-        position: "relative",
-        zIndex: 1,
-      }}>
+      <div className="parks-header">
         <div>
           <p style={{
             color: "#D4AF37",
@@ -511,7 +576,7 @@ export default function DisneyParksSection() {
             12 Parks. 4 Countries. One Magic.
           </h2>
         </div>
-        <p style={{
+        <p className="parks-header-desc" style={{
           color: "rgba(255,255,255,0.35)",
           fontSize: 13,
           lineHeight: 1.75,
@@ -524,23 +589,10 @@ export default function DisneyParksSection() {
       </div>
 
       {/* ── Main layout ── */}
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "300px 1fr 380px",
-        gap: 0,
-        padding: "0 clamp(20px, 5vw, 72px)",
-        minHeight: 560,
-        position: "relative",
-        zIndex: 1,
-      }}>
+      <div className="parks-grid">
 
         {/* ── LEFT: Park list ── */}
-        <div style={{
-          display: "flex",
-          flexDirection: "column",
-          borderRight: "1px solid rgba(255,255,255,0.07)",
-          paddingRight: 24,
-        }}>
+        <div className="parks-left">
           <div style={{
             display: "flex",
             justifyContent: "space-between",
@@ -620,13 +672,7 @@ export default function DisneyParksSection() {
         </div>
 
         {/* ── CENTER: Park image ── */}
-        <div style={{
-          position: "relative",
-          margin: "0 24px",
-          borderRadius: 20,
-          overflow: "hidden",
-          minHeight: 520,
-        }}>
+        <div className="parks-center">
           {PARKS.map((p, i) => (
             <ParkImage key={p.id} park={p} active={i === active} />
           ))}
@@ -691,14 +737,8 @@ export default function DisneyParksSection() {
         {/* ── RIGHT: Description panel ── */}
         <div
           key={active}
-          style={{
-            borderLeft: "1px solid rgba(255,255,255,0.07)",
-            paddingLeft: 32,
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            animation: "slideRight 0.5s ease both",
-          }}
+          className="parks-right"
+          style={{ animation: "slideRight 0.5s ease both" }}
         >
           {/* Location badge */}
           <div style={{
