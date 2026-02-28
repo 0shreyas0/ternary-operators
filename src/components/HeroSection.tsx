@@ -8,7 +8,6 @@ export const HeroSection = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const [logoVisible, setLogoVisible] = useState(false);
-  const [isMuted, setIsMuted] = useState(true);
 
   useSectionObserver('home', sectionRef);
 
@@ -21,13 +20,6 @@ export const HeroSection = () => {
     }
   };
 
-  const toggleMute = () => {
-    const video = videoRef.current;
-    if (video) {
-      video.muted = !video.muted;
-      setIsMuted(video.muted);
-    }
-  };
 
   return (
     <section ref={sectionRef} className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden">
@@ -56,15 +48,6 @@ export const HeroSection = () => {
           }}
         />
       </div>
-
-      {/* Sound toggle button */}
-      <button
-        onClick={toggleMute}
-        className="absolute bottom-6 right-6 z-20 bg-black/50 hover:bg-black/70 text-white rounded-full w-11 h-11 flex items-center justify-center text-xl backdrop-blur-md border border-white/20 transition-all"
-        title={isMuted ? 'Unmute' : 'Mute'}
-      >
-        {isMuted ? '🔇' : '🔊'}
-      </button>
 
       {/* Dark gradient overlay — only show once logo is visible */}
       <AnimatePresence>

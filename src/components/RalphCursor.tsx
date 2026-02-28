@@ -108,7 +108,7 @@ export default function RalphCursor() {
         if (isMoving.current) {
           isMoving.current = false;
           // Use frame 1 for the idle/standing state
-          frameRef.current = 1;
+          frameRef.current = 0;
         }
       }
 

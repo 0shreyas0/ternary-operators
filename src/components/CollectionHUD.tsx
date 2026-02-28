@@ -146,12 +146,12 @@ export const CollectionHUD = () => {
         )}
       </AnimatePresence>
 
-      {/* ── HUD Button + Panel ── */}
+      {/* HUD Button + Panel */}
       <div className="fixed bottom-4 right-4 z-[199]">
 
         {/* Hint tooltip */}
         <AnimatePresence>
-          {showHint && !open && (
+          {showHint && collectedCount === 0 && !open && (
             <motion.div
               initial={{ opacity: 0, y: 8, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
