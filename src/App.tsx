@@ -101,11 +101,17 @@ function App() {
               {/* 6 ── Disney+ Streaming section */}
               <section id="streaming" className="relative">
                 <DisneyPlusSection />
+                {bySection('streaming').map(p => (
+                  <HiddenPrincess key={p.id} id={p.id} x={p.x} y={p.y} />
+                ))}
               </section>
 
               {/* 7 ── Merch section */}
               <section id="merch" className="relative">
                 <MerchSection />
+                {bySection('merch').map(p => (
+                  <HiddenPrincess key={p.id} id={p.id} x={p.x} y={p.y} />
+                ))}
               </section>
 
               {/* 8 ── Site footer */}

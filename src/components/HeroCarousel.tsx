@@ -6,6 +6,7 @@ import posterSnowWhite from '../assets/poster_snow_white.png';
 import posterFrozen from '../assets/poster_frozen.png';
 import posterFamily from '../assets/poster_family.png';
 import { useSectionObserver } from '../hooks/useActiveSection';
+import SplitTextAnim from './SplitTextAnim';
 
 const carouselData = [
   {
@@ -80,8 +81,8 @@ export const HeroCarousel = () => {
 
   useSectionObserver('carousel', sectionRef);
 
-  // We only have 5 slides, so we wrap the index
-  const imageIndex = Math.abs(page % carouselData.length);
+  // Fix the modulo for negative numbers to ensure true infinite scroll/loop
+  const imageIndex = ((page % carouselData.length) + carouselData.length) % carouselData.length;
   const currentSlide = carouselData[imageIndex];
 
   const paginate = (newDirection: number) => {
@@ -101,14 +102,23 @@ export const HeroCarousel = () => {
   return (
     <div ref={sectionRef} className="w-full max-w-7xl mx-auto my-12 relative z-10">
       <div className="text-center mb-10">
-
+        <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-4">
+          <SplitTextAnim
+            text="The Disney Centennial Journey"
+            delay={50}
+            duration={1.2}
+            ease="power3.out"
+            from={{ opacity: 0, y: 15 }}
+            to={{ opacity: 1, y: 0 }}
+          />
+        </h2>
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto italic font-serif"
+          className="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto italic font-serif"
         >
-          Below is a journey through the history of Disney magic!
+          A voyage through 100 years of enchantment and innovation.
         </motion.p>
       </div>
 
@@ -194,9 +204,9 @@ export const HeroCarousel = () => {
         </AnimatePresence>
 
         {/* Navigation Buttons */}
-        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-4 md:px-6 pointer-events-none z-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-4 md:px-6 pointer-events-none z-40 opacity-100 transition-opacity duration-300">
           <button
-            className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white pointer-events-auto hover:bg-white/30 hover:scale-110 active:scale-95 transition-all shadow-lg"
+            className="w-12 h-12 rounded-full bg-black/40 backdrop-blur-md border border-white/20 flex items-center justify-center text-white pointer-events-auto hover:bg-white/30 hover:scale-110 active:scale-95 transition-all shadow-lg"
             onClick={() => paginate(-1)}
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">
@@ -204,7 +214,7 @@ export const HeroCarousel = () => {
             </svg>
           </button>
           <button
-            className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white pointer-events-auto hover:bg-white/30 hover:scale-110 active:scale-95 transition-all shadow-lg"
+            className="w-12 h-12 rounded-full bg-black/40 backdrop-blur-md border border-white/20 flex items-center justify-center text-white pointer-events-auto hover:bg-white/30 hover:scale-110 active:scale-95 transition-all shadow-lg"
             onClick={() => paginate(1)}
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">

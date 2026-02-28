@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import CountUp from "./CountUp";
 import { useSectionObserver } from '../hooks/useActiveSection';
+import SplitTextAnim from "./SplitTextAnim";
 
 const CARDS = [
   {
@@ -218,7 +219,14 @@ export default function DisneyWorldCards() {
             margin: 0,
             letterSpacing: "-0.02em",
           }}>
-            Everything Disney, In One Place
+            <SplitTextAnim
+              text="Everything Disney, In One Place"
+              delay={50}
+              duration={1}
+              ease="power3.out"
+              from={{ opacity: 0, y: 15 }}
+              to={{ opacity: 1, y: 0 }}
+            />
           </h2>
         </div>
         <p style={{

@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { useSectionObserver } from '../hooks/useActiveSection';
+import SplitTextAnim from "./SplitTextAnim";
 import magicKingdomImg from "../assets/magic kingdom.png";
 import epcotImg from "../assets/epcot.png";
 import animalKingdomImg from "../assets/animal kingdom.png";
@@ -627,7 +628,14 @@ export default function DisneyParksSection() {
             letterSpacing: "-0.02em",
             lineHeight: 1.1,
           }}>
-            <CountUp to={12} duration={0.8} /> Parks. <CountUp to={4} duration={0.8} /> Countries. One Magic.
+            <SplitTextAnim
+              text="12 Parks. 6 Countries. One Magic."
+              delay={50}
+              duration={1}
+              ease="power3.out"
+              from={{ opacity: 0, y: 15 }}
+              to={{ opacity: 1, y: 0 }}
+            />
           </h2>
         </div>
         <p className="parks-header-desc" style={{

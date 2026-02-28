@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import bg3 from './assets/background3.jpg';
 import CountUp from "./components/CountUp";
 import { useSectionObserver } from './hooks/useActiveSection';
+import SplitTextAnim from "./components/SplitTextAnim";
 
 /* ─── Catalogue ─────────────────────────────────────────────────────────── */
 const MERCH = [
@@ -593,7 +594,14 @@ export default function MerchSection() {
                         fontWeight: 700, color: "#ffffff",
                         margin: 0, letterSpacing: "-0.02em", lineHeight: 1.1,
                     }}>
-                        Magic You Can Hold.
+                        <SplitTextAnim
+                            text="Magic You Can Hold."
+                            delay={50}
+                            duration={1}
+                            ease="power3.out"
+                            from={{ opacity: 0, y: 15 }}
+                            to={{ opacity: 1, y: 0 }}
+                        />
                     </h2>
                     <p className="merch-header-desc" style={{
                         marginTop: 8, fontSize: 13, lineHeight: 1.7,

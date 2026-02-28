@@ -37,132 +37,136 @@ export const HIDDEN_PRINCESSES: Array<{
     y: number; // % from top of parent section
     hint: string;
 }> = [
-    // ── Hero section (4 princesses) ─────────────────────────────────────────
+    // ── Hero section (3 princesses) ─────────────────────────────────────────
     {
         id: 0,
         sectionId: "hero",
-        x: 8,
-        y: 72,
+        x: 12,
+        y: 65,
         hint: "Near the bottom-left of the starfield...",
     },
     {
         id: 1,
         sectionId: "hero",
-        x: 91,
-        y: 18,
+        x: 88,
+        y: 22,
         hint: "High up in the top-right corner...",
     },
     {
         id: 2,
         sectionId: "hero",
-        x: 47,
-        y: 88,
-        hint: "Hiding near the very bottom, center...",
-    },
-    {
-        id: 3,
-        sectionId: "hero",
-        x: 78,
-        y: 55,
-        hint: "Somewhere in the right half of the hero...",
+        x: 45,
+        y: 85,
+        hint: "Hiding near the very bottom center...",
     },
 
-    // ── Carousel section (3 princesses) ─────────────────────────────────────
+    // ── Carousel section (2 princesses) ─────────────────────────────────────
+    {
+        id: 3,
+        sectionId: "carousel",
+        x: 8,
+        y: 40,
+        hint: "Far left of the history reel...",
+    },
     {
         id: 4,
         sectionId: "carousel",
-        x: 5,
-        y: 30,
-        hint: "Far left, mid-height of the carousel...",
-    },
-    {
-        id: 5,
-        sectionId: "carousel",
-        x: 88,
-        y: 75,
-        hint: "Bottom-right of the history reel...",
-    },
-    {
-        id: 6,
-        sectionId: "carousel",
-        x: 52,
-        y: 12,
-        hint: "Near the top center of the carousel...",
+        x: 92,
+        y: 70,
+        hint: "Bottom-right of the carousel...",
     },
 
-    // ── Franchise Worlds section (4 princesses) ──────────────────────────────
+    // ── Franchise Worlds section (2 princesses) ──────────────────────────────
     {
-        id: 7,
+        id: 5,
         sectionId: "worlds",
-        x: 15,
-        y: 55,
+        x: 18,
+        y: 60,
         hint: "In the left edge of the worlds section...",
     },
     {
-        id: 8,
+        id: 6,
         sectionId: "worlds",
-        x: 85,
-        y: 20,
+        x: 82,
+        y: 15,
         hint: "Top-right corner of the franchise cards...",
     },
-    {
-        id: 9,
-        sectionId: "worlds",
-        x: 42,
-        y: 80,
-        hint: "Near the bottom center of the worlds...",
-    },
-    {
-        id: 10,
-        sectionId: "worlds",
-        x: 68,
-        y: 45,
-        hint: "Tucked into the right side, mid-way...",
-    },
 
-    // ── Film Reel section (3 princesses) ────────────────────────────────────
+    // ── Film Reel section (2 princesses) ────────────────────────────────────
     {
-        id: 11,
+        id: 7,
         sectionId: "filmreel",
-        x: 7,
-        y: 50,
+        x: 10,
+        y: 45,
         hint: "Hidden in the film grain on the left...",
     },
     {
-        id: 12,
+        id: 8,
         sectionId: "filmreel",
-        x: 55,
-        y: 20,
-        hint: "Lurking above the film strip...",
-    },
-    {
-        id: 13,
-        sectionId: "filmreel",
-        x: 92,
-        y: 70,
-        hint: "Far right, near the bottom of the reel...",
+        x: 90,
+        y: 25,
+        hint: "Lurking above the film strip on the right...",
     },
 
-    // ── Footer section (3 princesses) ───────────────────────────────────────
+    // ── Parks/Footer section (2 princesses) ──────────────────────────────────
     {
-        id: 14,
+        id: 9,
         sectionId: "footer",
-        x: 12,
-        y: 40,
+        x: 15,
+        y: 75,
         hint: "Left side of the enchanted footer...",
     },
     {
-        id: 15,
+        id: 10,
         sectionId: "footer",
-        x: 55,
-        y: 65,
-        hint: "Center-bottom of the footer...",
+        x: 85,
+        y: 35,
+        hint: "Top-right corner of the footer area...",
+    },
+
+    // ── Streaming section (3 princesses) ────────────────────────────────────
+    {
+        id: 11,
+        sectionId: "streaming",
+        x: 5,
+        y: 20,
+        hint: "Top left corner of the streaming world...",
+    },
+    {
+        id: 12,
+        sectionId: "streaming",
+        x: 95,
+        y: 80,
+        hint: "Deep in the bottom right of Disney+...",
+    },
+    {
+        id: 13,
+        sectionId: "streaming",
+        x: 50,
+        y: 95,
+        hint: "Hiding at the very bottom of the stream...",
+    },
+
+    // ── Merch section (3 princesses) ────────────────────────────────────────
+    {
+        id: 14,
+        sectionId: "merch",
+        x: 10,
+        y: 85,
+        hint: "Bottom left of the toy shop...",
+    },
+    {
+        id: 15,
+        sectionId: "merch",
+        x: 90,
+        y: 15,
+        hint: "High on the top right shelf...",
     },
     {
         id: 16,
-        sectionId: "footer",
-        x: 88,
-        y: 25,
-        hint: "Top-right corner of the footer...",
+        sectionId: "merch",
+        x: 48,
+        y: 50,
+        hint: "Right in the middle of the merchandise...",
     },
 ];

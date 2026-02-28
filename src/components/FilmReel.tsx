@@ -10,6 +10,7 @@ import moanaImg from '../assets/Moana.png';
 import snowWhiteImg from '../assets/snow white.png';
 import CountUp from './CountUp';
 import { useSectionObserver } from '../hooks/useActiveSection';
+import SplitTextAnim from './SplitTextAnim';
 
 // Patch Lion King with local asset
 const PATCHED_REEL = FILM_REEL.map(f =>
@@ -42,15 +43,16 @@ export const FilmReel = () => {
         >
           ✦ A Century of Cinema ✦
         </motion.p>
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="text-4xl md:text-5xl font-serif font-bold text-white"
-        >
-          The Magic on Film
-        </motion.h2>
+        <h2 className="text-4xl md:text-5xl font-serif font-bold text-white">
+          <SplitTextAnim
+            text="The Magic on Film"
+            delay={50}
+            duration={1}
+            ease="power3.out"
+            from={{ opacity: 0, y: 15 }}
+            to={{ opacity: 1, y: 0 }}
+          />
+        </h2>
       </div>
 
       {/* Film strip border top */}

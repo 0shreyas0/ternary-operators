@@ -8,6 +8,7 @@ import wandavisionImg from './assets/wandavision.webp';
 import percyImg from './assets/percyjackson.avif';
 import CountUp from "./components/CountUp";
 import { useSectionObserver } from './hooks/useActiveSection';
+import SplitTextAnim from "./components/SplitTextAnim";
 
 interface Show {
     id: number;
@@ -469,7 +470,14 @@ export default function DisneyPlusSection() {
                             lineHeight: 1.1,
                         }}
                     >
-                        Every Universe. One Stream.
+                        <SplitTextAnim
+                          text="Every Universe. One Stream."
+                          delay={50}
+                          duration={1}
+                          ease="power3.out"
+                          from={{ opacity: 0, y: 15 }}
+                          to={{ opacity: 1, y: 0 }}
+                        />
                     </h2>
                 </div>
                 <p
