@@ -190,11 +190,15 @@ const PARKS = [
 
 // ── Static Background Park Ticket ─────────────────────────────────────────────
 const FloatingTicket = ({
-  top, left, rotate, parkName, color
+  top, left, rotate, parkName, color, i
 }: {
   top: string; left: string;
   rotate: number; parkName: string; color: string;
+  i: number;
 }) => {
+  // Use index to create a stable but varied duration to prevent re-render flickering
+  const duration = 16 + (i * 2.5) % 10;
+
   return (
     <motion.div
       style={{
@@ -202,19 +206,18 @@ const FloatingTicket = ({
         top,
         left,
         rotate,
-        zIndex: 0,
+        zIndex: 5, // Above the background, but below the content
         transformOrigin: "center center",
       }}
-      initial={{ opacity: 0, scale: 0.9 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      animate={{
+      initial={{ x: 0, y: 0 }}
+      animate={{ 
+        // Continuous floating drift without disappearing or fading
         x: [0, 8, -6, 0],
         y: [0, -12, 6, 0],
         rotate: [rotate, rotate + 3, rotate - 2, rotate],
       }}
-      viewport={{ once: true, margin: "-50px" }}
       transition={{ 
-        duration: 16 + Math.random() * 8, // Very slow continuous drift
+        duration, 
         repeat: Infinity,
         ease: "easeInOut" 
       }}
@@ -441,10 +444,10 @@ export default function DisneyParksSection() {
       {/* Ambient floating tickets */}
       <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 0 }}>
         {TICKETS.map((t, i) => (
-          <FloatingTicket key={i} {...t} />
+          <FloatingTicket key={i} i={i} {...t} />
         ))}
-        {/* Dark dimming overlay to ensure white text remains perfectly legible over bright cream tickets */}
-        <div className="absolute inset-0 bg-[#020818]/85 z-10 pointer-events-none" />
+        {/* Slightly lighter dimming overlay for better ticket visibility */}
+        <div className="absolute inset-0 bg-[#020818]/65 z-10 pointer-events-none" />
       </div>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&display=swap');

@@ -10,7 +10,6 @@ const DISP_W      = 80;
 // ── Walk animation (side-walk row Y=15, 3 frames, ~54px cells) ────────────────
 const WALK_CELL_W = 54;
 const WALK_ROW_Y  = 15;
-const WALK_FRAMES = 3;
 const WALK_FPS    = 8;
 const SCALE       = DISP_W / WALK_CELL_W;
 const DISP_H      = Math.round(63 * SCALE);
@@ -101,12 +100,14 @@ export default function RalphCursor() {
         goLeft.current   = dx < 0;
 
         if (ts - lastTs.current > 1000 / WALK_FPS) {
-          frameRef.current = (frameRef.current + 1) % WALK_FRAMES;
+          // Toggle between frame 0 and frame 1 for the walking animation
+          frameRef.current = frameRef.current === 2 ? 1 : 2;
           lastTs.current   = ts;
         }
       } else {
         if (isMoving.current) {
           isMoving.current = false;
+          // Use frame 1 for the idle/standing state
           frameRef.current = 0;
         }
       }
