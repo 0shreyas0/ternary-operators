@@ -16,6 +16,7 @@ import { CollectionHUD } from './components/CollectionHUD';
 import { GameProvider } from './hooks/useGame';
 import { HIDDEN_PRINCESSES } from './constants/princesses';
 import { useLenis } from './hooks/useLenis';
+import RalphCursor from './components/RalphCursor';
 import './index.css';
 
 function App() {
@@ -48,6 +49,8 @@ function App() {
 
         {preloaderDone && (
           <div className="animate-fade-in">
+            {/* Ralph chaser — only shown on the main site */}
+            <RalphCursor />
             {/* Floating glassmorphic navbar */}
             <Navbar />
 
