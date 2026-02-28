@@ -110,6 +110,7 @@ export const HeroCarousel = () => {
             ease="power3.out"
             from={{ opacity: 0, y: 15 }}
             to={{ opacity: 1, y: 0 }}
+            textAlign="center"
           />
         </h2>
         <motion.p

@@ -38,6 +38,7 @@ export const FilmReel = () => {
         padding: "0 clamp(20px, 5vw, 72px)",
         marginBottom: 48,
         position: "relative",
+        textAlign: "center",
       }}>
         <motion.p
           initial={{ opacity: 0 }}
@@ -70,6 +71,7 @@ export const FilmReel = () => {
             ease="power3.out"
             from={{ opacity: 0, y: 15 }}
             to={{ opacity: 1, y: 0 }}
+            textAlign="center"
           />
         </h2>
       </div>
