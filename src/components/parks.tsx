@@ -1,5 +1,16 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import magicKingdomImg from "../assets/magic kingdom.png";
+import epcotImg from "../assets/epcot.png";
+import animalKingdomImg from "../assets/animal kingdom.png";
+import disneylandImg from "../assets/disneyland.png";
+import disneylandCaliforniaImg from "../assets/Disney California Adventure.png";
+import disneylandParisImg from "../assets/disneyland paris.png";
+import waltDisneyStudiosImg from "../assets/Walt Disney Studios Park.png";
+import tokyoDisneyImg from "../assets/tokyo disney.png";
+import tokyoDisneySeaImg from "../assets/Tokyo DisneySea.png";
+import hongKongImg from "../assets/Hong Kong Disneyland.png";
+import shanghaiImg from "../assets/Shanghai Disneyland.png";
 
 const PARKS = [
   {
@@ -12,7 +23,7 @@ const PARKS = [
     description:
       "The most visited theme park on Earth. Home to the iconic Cinderella Castle, Space Mountain, and the parade of your childhood dreams. Magic Kingdom is where Walt's original vision lives in its fullest form — a place where every Main Street stroll feels like the opening scene of a fairy tale.",
     highlights: ["Cinderella Castle", "Space Mountain", "TRON Lightcycle / Run"],
-    image: "https://images.unsplash.com/photo-1575039311-6b1e4b0c3e12?w=1200&q=80",
+    image: magicKingdomImg,
     fallback: "https://images.unsplash.com/photo-1559752977-e61ea6c6e370?w=1200&q=80",
     color: "#3B82F6",
   },
@@ -26,7 +37,7 @@ const PARKS = [
     description:
       "Part world's fair, part future utopia. EPCOT invites you to journey through 11 countries in World Showcase, blast into space on Guardians of the Galaxy, and celebrate the ingenuity of humanity across its four interconnected neighbourhoods. Equal parts educational and extraordinary.",
     highlights: ["World Showcase", "Guardians of the Galaxy", "Remy's Ratatouille Adventure"],
-    image: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=1200&q=80",
+    image: epcotImg,
     fallback: "https://images.unsplash.com/photo-1580058572462-98e2c0e0e2f0?w=1200&q=80",
     color: "#8B5CF6",
   },
@@ -54,7 +65,7 @@ const PARKS = [
     description:
       "The largest Disney theme park in the world at 580 acres. Animal Kingdom blends conservation, nature, and storytelling — from the ancient baobab Tree of Life to the bioluminescent wonders of Pandora, Avatar's moon come to life. A park unlike any other on Earth.",
     highlights: ["Pandora – Avatar", "Tree of Life", "Kilimanjaro Safaris"],
-    image: "https://images.unsplash.com/photo-1534361960057-19f073edb0d3?w=1200&q=80",
+    image: animalKingdomImg,
     fallback: "https://images.unsplash.com/photo-1474511320723-9a56873867b5?w=1200&q=80",
     color: "#10B981",
   },
@@ -68,7 +79,7 @@ const PARKS = [
     description:
       "Where it all began. On July 17, 1955, Walt Disney opened a park unlike anything the world had seen. Seven decades on, Disneyland California still carries the magic of the original — Sleeping Beauty Castle, the Haunted Mansion, Indiana Jones, and the spirit of Walt himself on every cobblestone.",
     highlights: ["Sleeping Beauty Castle", "Haunted Mansion", "Indiana Jones Adventure"],
-    image: "https://images.unsplash.com/photo-1567184769774-bd0df8c9c659?w=1200&q=80",
+    image: disneylandImg,
     fallback: "https://images.unsplash.com/photo-1551524559-8af4e6624178?w=1200&q=80",
     color: "#EF4444",
   },
@@ -82,7 +93,7 @@ const PARKS = [
     description:
       "A sun-drenched celebration of California culture and Disney storytelling. From the roaring thrills of Radiator Springs Racers on Route 66 to Avengers Campus — where heroes walk among you — DCA is the West Coast's most vibrant theme park experience.",
     highlights: ["Avengers Campus", "Guardians of the Galaxy", "Radiator Springs Racers"],
-    image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1200&q=80",
+    image: disneylandCaliforniaImg,
     fallback: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80",
     color: "#F97316",
   },
@@ -96,7 +107,7 @@ const PARKS = [
     description:
       "Europe's enchanted kingdom. With a pink-hued castle uniquely designed for Paris's grey skies, a dragon sleeping beneath it, and the fastest Space Mountain in the world, Disneyland Paris fuses classic Disney with distinctly French grandeur. The continent's most visited tourist attraction.",
     highlights: ["Le Château de la Belle au Bois Dormant", "Star Wars Hyperspace Mountain", "Pirates of the Caribbean"],
-    image: "https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?w=1200&q=80",
+    image: disneylandParisImg,
     fallback: "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=1200&q=80",
     color: "#EC4899",
   },
@@ -110,7 +121,7 @@ const PARKS = [
     description:
       "Lights, camera, magic. Sitting beside its sister park, Walt Disney Studios Park celebrates the art of filmmaking with Marvel, Pixar, and Disney characters at the centre of every experience. The ongoing Avengers Campus and Cars Road Trip expansions are making this one of Europe's most exciting parks.",
     highlights: ["Avengers Campus Paris", "The Twilight Zone Tower of Terror", "Ratatouille: The Adventure"],
-    image: "https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=1200&q=80",
+    image: waltDisneyStudiosImg,
     fallback: "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=1200&q=80",
     color: "#6366F1",
   },
@@ -124,7 +135,7 @@ const PARKS = [
     description:
       "The first Disney park outside America — and arguably the most meticulously maintained. Tokyo Disneyland is renowned for its extraordinary cleanliness, impeccable service, and exclusive attractions found nowhere else on Earth. A love letter to the original, perfected by Japanese craftsmanship.",
     highlights: ["Cinderella Castle", "Monsters Inc. Ride & Go Seek", "Pooh's Hunny Hunt"],
-    image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1200&q=80",
+    image: tokyoDisneyImg,
     fallback: "https://images.unsplash.com/photo-1513407030348-c983a97b98d8?w=1200&q=80",
     color: "#14B8A6",
   },
@@ -138,7 +149,7 @@ const PARKS = [
     description:
       "Consistently ranked the world's most beautiful theme park. Tokyo DisneySea is built around seven nautical-themed 'ports of call', dominated by the awe-inspiring Mt. Prometheus volcano. From Sinbad's Storybook Voyage to the new Fantasy Springs, this is Disney at its most breathtaking.",
     highlights: ["Fantasy Springs", "Journey to the Center of the Earth", "Indiana Jones Adventure"],
-    image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=1200&q=80",
+    image: tokyoDisneySeaImg,
     fallback: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80",
     color: "#0EA5E9",
   },
@@ -152,7 +163,7 @@ const PARKS = [
     description:
       "Intimate, beautiful, and thoughtfully designed with feng shui principles at its heart. Hong Kong Disneyland features one of Disney's most stunning castles and a Marvel-themed area that brings Iron Man, Ant-Man, and the Avengers to life across immersive lands built for the modern fan.",
     highlights: ["Castle of Magical Dreams", "Ant-Man and The Wasp: Nano Battle!", "Mystic Manor"],
-    image: "https://images.unsplash.com/photo-1533856493584-0c6ca8ca9ce3?w=1200&q=80",
+    image: hongKongImg,
     fallback: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1200&q=80",
     color: "#D946EF",
   },
@@ -166,7 +177,7 @@ const PARKS = [
     description:
       "The newest and most technologically advanced Disney theme park ever built. Shanghai Disneyland's Enchanted Storybook Castle is the largest in any Disney park — soaring 197 feet into the sky. Authentically Disney, distinctly Chinese, and audaciously ambitious in every detail.",
     highlights: ["Enchanted Storybook Castle", "TRON Lightcycle Power Run", "Zootopia Land"],
-    image: "https://images.unsplash.com/photo-1508804052814-cd3ba865a116?w=1200&q=80",
+    image: shanghaiImg,
     fallback: "https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?w=1200&q=80",
     color: "#EF4444",
   },
@@ -340,12 +351,18 @@ const TICKETS = [
 ];
 
 function ParkImage({ park, active }: { park: typeof PARKS[0]; active: boolean }) {
-  const [src, setSrc] = useState(park.image);
+  const [error, setError] = useState(false);
+
+  // If the image prop changes (e.g. from hot reload), reset error state
+  useEffect(() => {
+    setError(false);
+  }, [park.image]);
+
   return (
     <img
-      src={src}
+      src={error ? park.fallback : park.image}
       alt={park.name}
-      onError={() => setSrc(park.fallback)}
+      onError={() => setError(true)}
       style={{
         position: "absolute", inset: 0,
         width: "100%", height: "100%",
