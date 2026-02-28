@@ -15,7 +15,7 @@ export const NavLinks = () => {
       e.preventDefault();
       if (lenis) {
         lenis.scrollTo(href, { 
-          offset: -100, 
+          offset: 0, 
           duration: 2.0, // Majestic slower scroll
           easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
           onComplete: () => {

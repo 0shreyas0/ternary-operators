@@ -10,7 +10,7 @@ export const NavMobileMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: (
       onClose();
       const scrollFn = () => {
         if (lenis) {
-          lenis.scrollTo(href, { offset: -90, duration: 2.0 });
+          lenis.scrollTo(href, { offset: 0, duration: 2.0 });
         } else {
           document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
         }
