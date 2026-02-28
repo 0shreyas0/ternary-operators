@@ -11,6 +11,7 @@ import tokyoDisneyImg from "../assets/tokyo disney.png";
 import tokyoDisneySeaImg from "../assets/Tokyo DisneySea.png";
 import hongKongImg from "../assets/Hong Kong Disneyland.png";
 import shanghaiImg from "../assets/Shanghai Disneyland.png";
+import bg1 from '../assets/background1.webp';
 
 const PARKS = [
   {
@@ -248,7 +249,7 @@ const FloatingTicket = ({
           gap: 12,
           position: "relative",
         }}>
-           {/* Left notch circle */}
+          {/* Left notch circle */}
           <div style={{
             position: "absolute",
             left: -20, top: "50%",
@@ -291,7 +292,7 @@ const FloatingTicket = ({
             color: "rgba(0,0,0,0.4)",
             marginBottom: 8,
           }}>ADMIT ONE</div>
-          
+
           <div style={{
             fontSize: 28,
             fontWeight: 900,
@@ -309,7 +310,7 @@ const FloatingTicket = ({
           }}>
             {parkName}
           </div>
-          
+
           <div style={{
             fontSize: 14,
             fontWeight: 700,
@@ -411,12 +412,26 @@ export default function DisneyParksSection() {
 
   return (
     <section style={{
-      background: "#020818",
+      backgroundColor: "#21182A",
       padding: "80px 0",
       fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
       overflow: "hidden",
       position: "relative",
     }}>
+      {/* ── Background Image Layer ── */}
+      <div style={{
+        position: "absolute",
+        inset: 0,
+        backgroundImage: `url(${bg1})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+        opacity: 0.08,
+        filter: "grayscale(100%)",
+        pointerEvents: "none",
+        zIndex: 0,
+      }} />
+
       {/* Ambient floating tickets */}
       <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 0 }}>
         {TICKETS.map((t, i) => (
@@ -712,7 +727,7 @@ export default function DisneyParksSection() {
           {/* Gradient overlay */}
           <div style={{
             position: "absolute", inset: 0,
-            background: "linear-gradient(to top, rgba(2,8,24,0.7) 0%, rgba(2,8,24,0.1) 50%, transparent 100%)",
+            background: "linear-gradient(to top, rgba(33,24,42,0.85) 0%, rgba(33,24,42,0.2) 50%, transparent 100%)",
             pointerEvents: "none",
           }} />
 

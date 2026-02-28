@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import bg3 from './assets/background3.jpg';
 
 /* ─── Catalogue ─────────────────────────────────────────────────────────── */
 const MERCH = [
@@ -410,12 +411,25 @@ export default function MerchSection() {
 
     return (
         <section style={{
-            background: "#020818",
+            backgroundColor: "transparent",
             padding: "80px 0 96px",
             fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
             overflow: "hidden",
             position: "relative",
         }}>
+            {/* ── Background Image Layers ── */}
+            <div style={{
+                position: "absolute",
+                inset: 0,
+                backgroundImage: `url(${bg3})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                opacity: 0.1,
+                filter: "grayscale(100%)",
+                pointerEvents: "none",
+                zIndex: 0,
+            }} />
+
             <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
 
@@ -634,14 +648,14 @@ export default function MerchSection() {
                 <div style={{
                     position: "absolute", left: 0, top: 0, bottom: 0,
                     width: "clamp(20px, 5vw, 72px)",
-                    background: "linear-gradient(90deg, #020818 0%, transparent 100%)",
+                    background: "linear-gradient(90deg, #21182A 0%, transparent 100%)",
                     pointerEvents: "none", zIndex: 20,
                 }} />
                 {/* Right fade */}
                 <div style={{
                     position: "absolute", right: 0, top: 0, bottom: 0,
                     width: "clamp(20px, 5vw, 72px)",
-                    background: "linear-gradient(270deg, #020818 0%, transparent 100%)",
+                    background: "linear-gradient(270deg, #21182A 0%, transparent 100%)",
                     pointerEvents: "none", zIndex: 20,
                 }} />
 

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import bg2 from './assets/background2.webp';
 
 interface Show {
     id: number;
@@ -298,12 +299,27 @@ export default function DisneyPlusSection() {
     return (
         <section
             style={{
-                background: "#020818",
+                backgroundColor: "#21182A",
                 padding: "80px 0",
                 fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+                position: "relative",
                 overflow: "hidden",
             }}
         >
+            {/* ── Background Image Layer ── */}
+            <div style={{
+                position: "absolute",
+                inset: 0,
+                backgroundImage: `url(${bg2})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundAttachment: "fixed",
+                opacity: 0.1,
+                filter: "grayscale(100%)",
+                pointerEvents: "none",
+                zIndex: 0,
+            }} />
+
             <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
 
@@ -474,7 +490,7 @@ export default function DisneyPlusSection() {
                             position: "absolute",
                             inset: 0,
                             background:
-                                "linear-gradient(to top, rgba(2,8,24,0.7) 0%, rgba(2,8,24,0.05) 55%, transparent 100%)",
+                                "linear-gradient(to top, rgba(33,24,42,0.85) 0%, rgba(33,24,42,0.2) 55%, transparent 100%)",
                             pointerEvents: "none",
                         }}
                     />
@@ -794,7 +810,7 @@ export default function DisneyPlusSection() {
                         top: 32,
                         bottom: 0,
                         width: "clamp(20px, 5vw, 72px)",
-                        background: "linear-gradient(90deg, #020818, transparent)",
+                        background: "linear-gradient(90deg, #21182A, transparent)",
                         pointerEvents: "none",
                         zIndex: 2,
                     }}
@@ -806,7 +822,7 @@ export default function DisneyPlusSection() {
                         top: 32,
                         bottom: 0,
                         width: "clamp(20px, 5vw, 72px)",
-                        background: "linear-gradient(270deg, #020818, transparent)",
+                        background: "linear-gradient(270deg, #21182A, transparent)",
                         pointerEvents: "none",
                         zIndex: 2,
                     }}
