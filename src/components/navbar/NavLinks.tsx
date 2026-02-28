@@ -2,10 +2,34 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { NAV_ITEMS } from '../../constants';
 import { useActiveSection } from '../../hooks/useActiveSection';
+import { lenisInstance } from '../../hooks/useLenis';
 
 export const NavLinks = () => {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const { activeSection } = useActiveSection();
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    const lenis = lenisInstance || window.lenis;
+
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      if (lenis) {
+        lenis.scrollTo(href, { 
+          offset: -100, 
+          duration: 2.0, // Majestic slower scroll
+          easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
+          onComplete: () => {
+            window.history.pushState(null, '', href);
+          }
+        });
+      } else {
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }
+  };
 
   return (
     <ul
@@ -13,12 +37,12 @@ export const NavLinks = () => {
       onMouseLeave={() => setHoveredItem(null)}
     >
       {NAV_ITEMS.map((item) => {
-        // NAV_ITEMS likely has #id as href. Strip `#` to compare with activeSection
         const isActive = activeSection === item.href.replace('#', '');
         return (
           <li key={item.label} className="relative py-2">
             <motion.a
               href={item.href}
+              onClick={(e) => handleNavClick(e, item.href)}
               onMouseEnter={() => setHoveredItem(item.label)}
               // The text should be stark white if hovered or active, faint otherwise
               className={`

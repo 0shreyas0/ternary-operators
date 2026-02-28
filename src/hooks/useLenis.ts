@@ -2,39 +2,46 @@ import { useEffect } from 'react';
 import Lenis from 'lenis';
 
 /**
- * useLenis
- * Initialises Lenis smooth scrolling for the page.
- * Automatically cleans up on unmount.
+ * Global Lenis instance for programmatic scrolling
  */
+export let lenisInstance: Lenis | null = null;
+declare global {
+  interface Window {
+    lenis: Lenis | null;
+  }
+}
+
 export const useLenis = () => {
   useEffect(() => {
-    // Prevent the browser from restoring the last scroll position
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
-    // Also reset native scroll in case it jumped before Lenis took over
-    window.scrollTo(0, 0);
 
     const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      duration: 1.5,
+      lerp: 0.1,
       smoothWheel: true,
-      touchMultiplier: 1.5,
+      touchMultiplier: 2,
     });
 
-    // Force Lenis itself to start at the top
-    lenis.scrollTo(0, { immediate: true });
+    lenisInstance = lenis;
+    window.lenis = lenis;
 
-    let rafId: number;
     const raf = (time: number) => {
       lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
+      requestAnimationFrame(raf);
     };
-    rafId = requestAnimationFrame(raf);
+    requestAnimationFrame(raf);
+
+    // Initial top reset
+    setTimeout(() => {
+      lenis.scrollTo(0, { immediate: true });
+    }, 50);
 
     return () => {
-      cancelAnimationFrame(rafId);
       lenis.destroy();
+      lenisInstance = null;
+      window.lenis = null;
     };
   }, []);
 };

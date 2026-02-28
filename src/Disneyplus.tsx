@@ -326,7 +326,6 @@ export default function DisneyPlusSection() {
                 backgroundImage: `url(${bg2})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
-                backgroundAttachment: "fixed",
                 opacity: 0.1,
                 filter: "grayscale(100%)",
                 pointerEvents: "none",

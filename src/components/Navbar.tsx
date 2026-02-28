@@ -13,7 +13,7 @@ export const Navbar = () => {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-      className="fixed top-0 left-0 right-0 z-50 pointer-events-none"
+      className="fixed top-0 left-0 right-0 z-[99999] pointer-events-none"
     >
       {/* Glassmorphic bar — logo left | links center | mickey right */}
       <div className="mx-auto max-w-fit mt-6 rounded-full bg-black/40 backdrop-blur-2xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)] px-8 py-2 flex items-center gap-12 pointer-events-auto">

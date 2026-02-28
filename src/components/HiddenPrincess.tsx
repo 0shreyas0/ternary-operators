@@ -33,7 +33,7 @@ export const HiddenPrincess = ({ id, x, y }: HiddenPrincessProps) => {
 
   return (
     <div
-      className="absolute z-[100] pointer-events-auto select-none"
+      className="absolute z-[99999] pointer-events-auto select-none"
       style={{ left: `${x}%`, top: `${y}%`, transform: 'translate(-50%, -50%)' }}
     >
       {/* Main sprite — always rendered but fades after collection */}

@@ -46,10 +46,6 @@ export default function RalphCursor() {
     b.style.opacity   = '1';
     b.style.transform = 'translateX(-50%) translateY(0) scale(1)';
     clearTimeout(hideTimer.current);
-    hideTimer.current = setTimeout(() => {
-      b.style.opacity   = '0';
-      b.style.transform = 'translateX(-50%) translateY(-6px) scale(0.9)';
-    }, 4000);
   };
 
   const hideBubble = () => {
@@ -63,8 +59,10 @@ export default function RalphCursor() {
 
   const startHold = () => {
     clearTimeout(holdTimer.current);
-    holdTimer.current = setTimeout(showBubble, 100);
+    holdTimer.current = setTimeout(showBubble, 1000); // 1-second hover delay
   };
+
+  const isInsideRef = useRef(false);
 
   useEffect(() => {
     const onMove = (e: MouseEvent) => {
@@ -78,6 +76,23 @@ export default function RalphCursor() {
       const dx   = mouse.current.x - pos.current.x;
       const dy   = mouse.current.y - pos.current.y;
       const dist = Math.sqrt(dx * dx + dy * dy);
+
+      // Precise bounding-box hover detection since pointer-events is 'none'
+      // Sprite is centered at x, and goes from y-DISP_H to y.
+      const isOverRalph = 
+        mouse.current.x >= pos.current.x - (DISP_W / 2) &&
+        mouse.current.x <= pos.current.x + (DISP_W / 2) &&
+        mouse.current.y >= pos.current.y - DISP_H &&
+        mouse.current.y <= pos.current.y;
+
+      if (isOverRalph !== isInsideRef.current) {
+        isInsideRef.current = isOverRalph;
+        if (isOverRalph) {
+          startHold();
+        } else {
+          hideBubble();
+        }
+      }
 
       if (dist > THRESHOLD) {
         pos.current.x += (dx / dist) * SPEED;
@@ -122,20 +137,21 @@ export default function RalphCursor() {
   return (
     <div
       ref={containerRef}
-      style={{ position: 'fixed', top: 0, left: 0, zIndex: 9999, pointerEvents: 'none', width: 0, height: 0 }}
+      style={{ position: 'fixed', top: 0, left: 0, zIndex: 99990, pointerEvents: 'none', width: 0, height: 0 }}
     >
       {/* Speech bubble */}
       <div
         ref={bubbleRef}
         style={{
           position:   'absolute',
-          bottom:     DISP_H + 10,
+          bottom:     DISP_H + 15,
           left:       '50%',
           transform:  'translateX(-50%) translateY(-6px) scale(0.9)',
           opacity:    0,
           transition: 'opacity 0.25s ease, transform 0.25s ease',
           whiteSpace: 'nowrap',
           pointerEvents: 'none',
+          zIndex: 10,
         }}
       >
         <div style={{
@@ -161,8 +177,6 @@ export default function RalphCursor() {
       {/* Ralph sprite */}
       <div
         ref={spriteRef}
-        onMouseEnter={startHold}
-        onMouseLeave={hideBubble}
         style={{
           position:           'absolute',
           top:                -DISP_H,
@@ -176,7 +190,7 @@ export default function RalphCursor() {
           imageRendering:     'pixelated',
           transform:          'translateX(-50%)',
           willChange:         'transform, background-position',
-          pointerEvents:      'auto',
+          pointerEvents:      'none', // Never blocks clicks
         }}
       />
     </div>
