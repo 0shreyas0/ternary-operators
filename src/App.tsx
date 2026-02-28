@@ -9,6 +9,7 @@ import Footer from './components/parks';
 import DisneyPlusSection from './Disneyplus';
 // @ts-ignore
 import MerchSection from './Merch';
+import { SiteFooter } from './components/SiteFooter';
 import { lazy, Suspense } from 'react';
 const Disney3DPreloader = lazy(() => import('./components/Disney3DPreloader'));
 import { HiddenPrincess } from './components/HiddenPrincess';
@@ -104,6 +105,9 @@ function App() {
             <section id="merch" className="relative">
               <MerchSection />
             </section>
+
+            {/* 8 ── Site footer */}
+            <SiteFooter />
 
             {/* ── Fixed Collection HUD (always visible) ── */}
             <CollectionHUD />
