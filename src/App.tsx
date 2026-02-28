@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { HeroCarousel } from './components/HeroCarousel';
@@ -18,6 +18,16 @@ import './index.css';
 function App() {
   const [preloaderDone, setPreloaderDone] = useState(false);
   useLenis();
+
+  // Every time the preloader finishes and the real content mounts,
+  // slam the scroll back to the very top before the browser can settle.
+  useEffect(() => {
+    if (!preloaderDone) return;
+    // Synchronous reset so it happens before the next paint
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' as ScrollBehavior });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, [preloaderDone]);
 
   // Group hidden princesses by section for easy placement
   const bySection = (sectionId: string) =>

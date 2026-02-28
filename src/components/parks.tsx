@@ -248,10 +248,13 @@ export default function DisneyParksSection() {
     return () => window.removeEventListener("keydown", fn);
   }, [active, animating]);
 
-  // Auto-scroll list to keep active item visible
+  // Auto-scroll list to keep active item visible — strictly on actual changes
+  const prevActive = useRef(active);
   useEffect(() => {
+    if (prevActive.current === active) return; // Skip initial render & StrictMode remounts
     const el = itemRefs.current[active];
-    if (el) el.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    if (el) el.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    prevActive.current = active;
   }, [active]);
 
   const park = PARKS[active];

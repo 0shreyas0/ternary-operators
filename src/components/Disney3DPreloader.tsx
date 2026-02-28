@@ -1,6 +1,6 @@
 import { Suspense, useState, useEffect, useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Float, Text, ContactShadows } from '@react-three/drei';
+import { Float, Text, ContactShadows, Environment, SpotLight } from '@react-three/drei';
 import * as THREE from 'three';
 
 // ── Smooth spring lerp helper ─────────────────────────────────────────────────
@@ -8,16 +8,16 @@ import * as THREE from 'three';
 const lerpSpring = (current: number, target: number, speed = 0.07) =>
   THREE.MathUtils.lerp(current, target, speed);
 
-// ── Materials — built once ────────────────────────────────────────────────────
 const useMaterials = () =>
   useMemo(() => ({
-    cover:     new THREE.MeshStandardMaterial({ color: '#8B1A1A', roughness: 0.3, metalness: 0.3 }),
-    coverBack: new THREE.MeshStandardMaterial({ color: '#2C1810', roughness: 0.5 }),
-    page:      new THREE.MeshStandardMaterial({ color: '#F5E6C8', roughness: 0.85 }),
-    spine:     new THREE.MeshStandardMaterial({ color: '#D4AF37', metalness: 0.7, roughness: 0.1 }),
-    gold:      new THREE.MeshStandardMaterial({
-      color: '#D4AF37', metalness: 0.8, roughness: 0.05,
-      emissive: new THREE.Color('#D4AF37'), emissiveIntensity: 0.15,
+    cover:     new THREE.MeshStandardMaterial({ color: '#5e0c0c', roughness: 0.6, metalness: 0.1 }),
+    coverBack: new THREE.MeshStandardMaterial({ color: '#2C1810', roughness: 0.7 }),
+    page:      new THREE.MeshStandardMaterial({ color: '#FDF5E6', roughness: 0.9 }),
+    spine:     new THREE.MeshPhysicalMaterial({ color: '#D4AF37', metalness: 0.9, roughness: 0.2, clearcoat: 0.5 }),
+    gold:      new THREE.MeshPhysicalMaterial({
+      color: '#FFD700', metalness: 1.0, roughness: 0.1,
+      clearcoat: 1.0, clearcoatRoughness: 0.1,
+      emissive: new THREE.Color('#D4AF37'), emissiveIntensity: 0.05,
     }),
   }), []);
 
@@ -219,11 +219,37 @@ export default function SnowWhitePreloader({
       style={{ opacity: fadeOut ? 0 : 1, transition: 'opacity 0.7s ease' }}
     >
       <Canvas shadows dpr={[1, 1.5]} camera={{ position: [0, 0.4, 8.5], fov: 42 }}>
-        {/* Lights — always outside Suspense */}
-        <ambientLight intensity={0.55} />
-        <directionalLight position={[5, 8, 6]}  intensity={1.8} color="#fff5e0" castShadow />
-        <pointLight       position={[-5, 5, 4]}  intensity={1.0} color="#D4AF37" />
-        <pointLight       position={[0, -4, 5]}  intensity={0.3} />
+        {/* Environment map: 'city' gives bright, sharp reflections for the gold */}
+        <Suspense fallback={null}>
+          <Environment preset="city" environmentIntensity={1.2} />
+        </Suspense>
+
+        {/* Brighter baseline lighting so nothing is lost in shadow */}
+        <ambientLight intensity={0.8} />
+        
+        {/* Main bright light hitting the front of the book */}
+        <directionalLight 
+          position={[2, 5, 8]} 
+          intensity={2.5} 
+          color="#ffffff" 
+          castShadow 
+          shadow-mapSize={[1024, 1024]} 
+        />
+        
+        {/* Warm key light for dramatic reading-lamp feel */}
+        <SpotLight
+          position={[4, 7, 5]}
+          angle={0.5}
+          penumbra={0.5}
+          intensity={3}
+          color="#ffedcc"
+        />
+        
+        {/* Magical glints from below */}
+        <pointLight position={[-3, -2, 4]} intensity={2.0} color="#D4AF37" distance={10} />
+        
+        {/* Cool moonlight rim light from the back */}
+        <directionalLight position={[-5, 8, -6]} intensity={1.5} color="#a0c4ff" />
 
         <DollyCamera step={step} />
 
