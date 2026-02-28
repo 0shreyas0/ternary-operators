@@ -1,5 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import bg2 from './assets/background2.webp';
+import daredevilImg from './assets/daredevil.webp';
+import mandalorianImg from './assets/madilorian.webp';
+import agathaImg from './assets/agathaallalong.webp';
+import natgeoImg from './assets/natgeo.jpg';
+import wandavisionImg from './assets/wandavision.webp';
+import percyImg from './assets/percyjackson.avif';
 import CountUp from "./components/CountUp";
 
 interface Show {
@@ -26,7 +32,7 @@ const SHOWS: Show[] = [
         description:
             "Set in the aftermath of the Galactic Empire's fall, a lone bounty hunter navigates the outer reaches of the galaxy far from the authority of the New Republic. The Mandalorian redefined what Star Wars could be — intimate, cinematic, and anchored by one of fiction's most iconic duos.",
         highlights: ["Pedro Pascal", "Grogu", "Emmy-Winning VFX"],
-        image: "https://image.tmdb.org/t/p/original/eU1i6eHXlzMqZIOS1YQUpnD3ZSE.jpg",
+        image: mandalorianImg,
         color: "#60A5FA",
     },
     {
@@ -39,7 +45,7 @@ const SHOWS: Show[] = [
         description:
             "Blending classic sitcom style with MCU scale, WandaVision broke new creative ground. Wanda and Vision living idyllic suburban lives — but the picture-perfect reality is not all it seems. A bold, genre-defying love story unlike anything Marvel has ever made.",
         highlights: ["Elizabeth Olsen", "9 Emmy Nominations", "MCU Phase 4"],
-        image: "https://image.tmdb.org/t/p/original/glKDfE6btIRcmfajvtX3UKp3cw9.jpg",
+        image: wandavisionImg,
         color: "#C084FC",
     },
     {
@@ -104,7 +110,7 @@ const SHOWS: Show[] = [
         description:
             "Percy Jackson discovers he is the son of Poseidon and must prevent a war among the Olympians. Faithful to Rick Riordan's beloved novels, this Disney+ series is a thrilling coming-of-age adventure that finally does justice to the source material fans waited two decades to see.",
         highlights: ["Walker Scobell", "Rick Riordan Approved", "Season 2 Confirmed"],
-        image: "https://image.tmdb.org/t/p/original/cNtAslrDHNkCFaKs6tCIButa7af.jpg",
+        image: percyImg,
         color: "#38BDF8",
     },
     {
@@ -117,7 +123,7 @@ const SHOWS: Show[] = [
         description:
             "Matt Murdock, a blind lawyer with heightened abilities, fights the monstrous Kingpin across New York City. Born Again brings Charlie Cox and Vincent D'Onofrio back to their iconic roles in Marvel's most visceral, street-level series yet.",
         highlights: ["Charlie Cox", "Vincent D'Onofrio", "Season 2 Now Streaming"],
-        image: "https://image.tmdb.org/t/p/original/mMWBPpB5aAbOlUFRGOCCWCIUkB6.jpg",
+        image: daredevilImg,
         color: "#EF4444",
     },
     {
@@ -143,7 +149,7 @@ const SHOWS: Show[] = [
         description:
             "Released from her prison by a mysterious teen, Agatha Harkness reassembles a coven of witches to journey down the legendary Witches' Road. Kathryn Hahn is electric in Marvel's most wildly creative and rewarding series.",
         highlights: ["Kathryn Hahn", "Witches' Road", "WandaVision Spinoff"],
-        image: "https://image.tmdb.org/t/p/original/3GrRgt6CiLIUXOuW2QwUTBqBNqz.jpg",
+        image: agathaImg,
         color: "#A78BFA",
     },
     {
@@ -169,7 +175,7 @@ const SHOWS: Show[] = [
         description:
             "From the deepest oceans to the highest peaks, National Geographic on Disney+ brings our planet's most extraordinary stories to your screen. World-class cinematography, urgent conservation narratives, and breathtaking natural wonders in stunning 4K HDR.",
         highlights: ["4K HDR", "David Attenborough", "Award-Winning Docs"],
-        image: "https://image.tmdb.org/t/p/original/sKQMbGPGNpMGkjj8bSfRKMaXMw7.jpg",
+        image: natgeoImg,
         color: "#FBBF24",
     },
 ];
