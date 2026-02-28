@@ -1,7 +1,9 @@
+import spriteSheetImg from '../assets/princesssss.png';
+
 // Princess sprite sheet data — 17 chibi princesses in a single row
 // Image dimensions: ~340×20px each sprite (approx), adjust SPRITE_W if needed
 
-export const SPRITE_SHEET = "/src/assets/princesssss.png";
+export const SPRITE_SHEET = spriteSheetImg;
 export const SPRITE_COUNT = 17;
 
 // Each sprite is 1/17th of the sheet width

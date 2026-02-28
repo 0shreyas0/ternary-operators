@@ -1,4 +1,5 @@
 import type React from 'react';
+import spriteSheet from '../assets/princesssss.png';
 
 /**
  * PrincessSprite
@@ -74,7 +75,7 @@ export const PrincessSprite = ({
       style={{
         width:              displayWidth,
         height:             displayH,
-        backgroundImage:    `url('/src/assets/princesssss.png')`,
+        backgroundImage:    `url(${spriteSheet})`,
         backgroundSize:     `${scaledSheetW}px ${scaledSheetH}px`,
         backgroundPosition: `${bgX}px ${bgY}px`,
         backgroundRepeat:   'no-repeat',

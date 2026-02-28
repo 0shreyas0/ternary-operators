@@ -102,7 +102,7 @@ export const HeroCarousel = () => {
   return (
     <div ref={sectionRef} className="w-full max-w-7xl mx-auto my-12 relative z-10">
       <div className="text-center mb-10">
-        <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-4">
+        <h2 className="text-center text-3xl md:text-5xl font-serif font-bold text-white mb-4">
           <SplitTextAnim
             text="The Disney Centennial Journey"
             delay={50}
