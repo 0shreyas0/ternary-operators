@@ -1,7 +1,6 @@
 // ── Navigation Items ───────────────────────────────────────────────────────
 export const NAV_ITEMS = [
   { label: "Movies", emoji: "🎬", href: "#movies" },
-  { label: "Series", emoji: "📺", href: "#series" },
   { label: "Parks", emoji: "🏰", href: "#parks" },
   { label: "Disney+", emoji: "✨", href: "#streaming" },
   { label: "Merch", emoji: "🎁", href: "#merch" },
@@ -68,13 +67,13 @@ export const FRANCHISE_WORLDS = [
 
 // ── Film Reel Posters — TMDB image CDN (no hotlink restrictions) ───────────
 export const FILM_REEL = [
-  { title: "Snow White",   year: 1937, image: "https://images.unsplash.com/photo-1568515387631-8b650bbcdb90?w=400&q=80" },
-  { title: "Fantasia",     year: 1940, image: "https://images.unsplash.com/photo-1511735111819-9a3efd16f78e?w=400&q=80" },
-  { title: "Cinderella",   year: 1950, image: "https://images.unsplash.com/photo-1518676590629-3dcbd9c5a5c9?w=400&q=80" },
-  { title: "The Lion King",year: 1994, image: "https://images.unsplash.com/photo-1534361960057-19f073edb0d3?w=400&q=80" },
-  { title: "Toy Story",    year: 1995, image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" },
-  { title: "Frozen",       year: 2013, image: "https://images.unsplash.com/photo-1548366086-7f1b76106622?w=400&q=80" },
-  { title: "Moana",        year: 2016, image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&q=80" },
+  { title: "Snow White", year: 1937, image: "https://images.unsplash.com/photo-1568515387631-8b650bbcdb90?w=400&q=80" },
+  { title: "Fantasia", year: 1940, image: "https://images.unsplash.com/photo-1511735111819-9a3efd16f78e?w=400&q=80" },
+  { title: "Cinderella", year: 1950, image: "https://images.unsplash.com/photo-1518676590629-3dcbd9c5a5c9?w=400&q=80" },
+  { title: "The Lion King", year: 1994, image: "https://images.unsplash.com/photo-1534361960057-19f073edb0d3?w=400&q=80" },
+  { title: "Toy Story", year: 1995, image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" },
+  { title: "Frozen", year: 2013, image: "https://images.unsplash.com/photo-1548366086-7f1b76106622?w=400&q=80" },
+  { title: "Moana", year: 2016, image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&q=80" },
 ];
 
 // ── Story Quiz Options ─────────────────────────────────────────────────────

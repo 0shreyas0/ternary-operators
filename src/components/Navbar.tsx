@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import disneycastle from '../assets/disney-castle-logo.svg';
+import mickeyMouse from '../assets/mickey-mouse-logo.png';
 import { motion, AnimatePresence } from 'framer-motion';
 import { NAV_ITEMS } from '../constants';
 
@@ -10,15 +12,14 @@ export const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50">
       {/* Glassmorphic bar */}
       <div className="mx-4 mt-4 rounded-2xl bg-black/40 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)] px-6 py-3 flex items-center justify-between">
-        
+
         {/* Logo */}
         <motion.a
           href="#"
           whileHover={{ scale: 1.06 }}
           whileTap={{ scale: 0.97 }}
-          className="font-serif text-2xl font-extrabold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-400 select-none"
         >
-          DISNEY
+          <img src={disneycastle} alt="Disney" className="h-20 w-auto select-none" />
         </motion.a>
 
         {/* Desktop Nav */}
@@ -33,7 +34,6 @@ export const Navbar = () => {
                 onHoverEnd={() => setActiveItem(null)}
                 className="relative flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold text-white/80 hover:text-white transition-colors"
               >
-                <span className="text-base">{item.emoji}</span>
                 <span>{item.label}</span>
                 <AnimatePresence>
                   {activeItem === item.label && (
@@ -54,13 +54,13 @@ export const Navbar = () => {
 
         {/* CTA */}
         <div className="hidden md:flex items-center gap-3">
-          <motion.button
-            whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(251,191,36,0.5)' }}
+          <motion.a
+            href="#streaming"
+            whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
-            className="px-5 py-2 rounded-full bg-gradient-to-r from-amber-500 to-yellow-500 text-black font-bold text-sm tracking-wide"
           >
-            Disney+ 
-          </motion.button>
+            <img src={mickeyMouse} alt="Mickey Mouse" className="h-16 w-16" />
+          </motion.a>
         </div>
 
         {/* Mobile hamburger */}
@@ -93,7 +93,6 @@ export const Navbar = () => {
                 onClick={() => setMobileOpen(false)}
                 className="flex items-center gap-3 px-4 py-3 rounded-xl text-white/80 hover:text-white hover:bg-white/10 font-semibold transition-all"
               >
-                <span>{item.emoji}</span>
                 <span>{item.label}</span>
               </a>
             ))}
