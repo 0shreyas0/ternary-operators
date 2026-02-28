@@ -77,11 +77,11 @@ export const FilmReel = () => {
       </div>
 
       {/* Film strip border top */}
-      <div className="w-full h-8 flex items-center mb-1" style={{
+      <div className="w-full h-8 flex items-center mb-1 overflow-hidden" style={{
         background: 'repeating-linear-gradient(90deg, #111 0px, #111 30px, #1a1a1a 30px, #1a1a1a 40px)',
         borderTop: '3px solid #222', borderBottom: '3px solid #222'
       }}>
-        {Array.from({ length: 30 }).map((_, i) => (
+        {Array.from({ length: 150 }).map((_, i) => (
           <div key={i} className="flex-shrink-0 w-6 h-4 mx-2 rounded-sm bg-black border border-[#333]" />
         ))}
       </div>
@@ -128,11 +128,11 @@ export const FilmReel = () => {
       </div>
 
       {/* Film strip border bottom */}
-      <div className="w-full h-8 flex items-center mt-1" style={{
+      <div className="w-full h-8 flex items-center mt-1 overflow-hidden" style={{
         background: 'repeating-linear-gradient(90deg, #111 0px, #111 30px, #1a1a1a 30px, #1a1a1a 40px)',
         borderTop: '3px solid #222', borderBottom: '3px solid #222'
       }}>
-        {Array.from({ length: 30 }).map((_, i) => (
+        {Array.from({ length: 150 }).map((_, i) => (
           <div key={i} className="flex-shrink-0 w-6 h-4 mx-2 rounded-sm bg-black border border-[#333]" />
         ))}
       </div>
