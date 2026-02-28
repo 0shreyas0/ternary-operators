@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import bg3 from './assets/background3.jpg';
+import CountUp from "./components/CountUp";
 
 /* ─── Catalogue ─────────────────────────────────────────────────────────── */
 const MERCH = [
@@ -693,9 +694,9 @@ export default function MerchSection() {
             {/* ── Stats bar ─────────────────────────────────────────────────── */}
             <div className="merch-stats">
                 {[
-                    { value: "50,000+", label: "Products" },
-                    { value: "195", label: "Countries" },
-                    { value: "100%", label: "Official & Licensed" },
+                    { value: <><CountUp from={0} to={50000} duration={0.8} separator="," />+</>, label: "Products" },
+                    { value: <CountUp from={0} to={195} duration={0.8} />, label: "Countries" },
+                    { value: <><CountUp from={0} to={100} duration={0.8} />%</>, label: "Official & Licensed" },
                     { value: "Free", label: "Returns on $75+" },
                 ].map((s) => (
                     <div key={s.label} style={{ textAlign: "center" }}>

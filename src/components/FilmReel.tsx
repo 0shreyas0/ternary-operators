@@ -8,6 +8,7 @@ import toyStoryImg from '../assets/toy story.png';
 import frozenImg from '../assets/frozen.png';
 import moanaImg from '../assets/Moana.png';
 import snowWhiteImg from '../assets/snow white.png';
+import CountUp from './CountUp';
 
 // Patch Lion King with local asset
 const PATCHED_REEL = FILM_REEL.map(f =>
@@ -90,7 +91,9 @@ export const FilmReel = () => {
               />
               <div className="absolute bottom-3 left-3 right-3">
                 <p className="text-white text-4xl font-extrabold leading-tight drop-shadow-lg">{film.title}</p>
-                <p className="text-amber-400 text-base font-extrabold mt-1">{film.year}</p>
+                <p className="text-amber-400 text-base font-extrabold mt-1">
+                  <CountUp from={1900} to={film.year} duration={0.8} />
+                </p>
               </div>
             </motion.div>
           ))}

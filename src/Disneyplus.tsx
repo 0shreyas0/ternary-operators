@@ -1,5 +1,6 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import bg2 from './assets/background2.webp';
+import CountUp from "./components/CountUp";
 
 interface Show {
     id: number;
@@ -472,7 +473,7 @@ export default function DisneyPlusSection() {
                     }}
                 >
                     Disney, Pixar, Marvel, Star Wars, National Geographic — all in one place.
-                    Over 220 million subscribers. Thousands of titles. Endlessly new.
+                    Over <CountUp from={0} to={220} duration={0.8} /> million subscribers. Thousands of titles. Endlessly new.
                 </p>
             </div>
 
@@ -785,11 +786,11 @@ export default function DisneyPlusSection() {
                                 lineHeight: 1,
                             }}
                         >
-                            {String(active + 1).padStart(2, "0")}
+                            <CountUp from={0} to={active + 1} duration={0.8} padZero />
                         </span>
                         <div style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.06)" }} />
                         <span style={{ fontSize: 12, color: "rgba(255,255,255,0.2)", fontWeight: 500 }}>
-                            {SHOWS.length} Titles
+                            <CountUp from={0} to={SHOWS.length} duration={0.8} /> Titles
                         </span>
                     </div>
                 </div>

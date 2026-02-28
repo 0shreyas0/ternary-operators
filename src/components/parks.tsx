@@ -12,6 +12,7 @@ import tokyoDisneySeaImg from "../assets/Tokyo DisneySea.png";
 import hongKongImg from "../assets/Hong Kong Disneyland.png";
 import shanghaiImg from "../assets/Shanghai Disneyland.png";
 import bg1 from '../assets/background1.webp';
+import CountUp from "./CountUp";
 
 const PARKS = [
   {
@@ -620,7 +621,7 @@ export default function DisneyParksSection() {
             letterSpacing: "-0.02em",
             lineHeight: 1.1,
           }}>
-            12 Parks. 4 Countries. One Magic.
+            <CountUp to={12} duration={0.8} /> Parks. <CountUp to={4} duration={0.8} /> Countries. One Magic.
           </h2>
         </div>
         <p className="parks-header-desc" style={{
@@ -675,7 +676,7 @@ export default function DisneyParksSection() {
                   minWidth: 22,
                   transition: "color 0.3s",
                 }}>
-                  {String(i + 1).padStart(2, "0")}
+                  <CountUp from={0} to={i + 1} duration={0.8} padZero />
                 </span>
 
                 {/* Name + location */}
@@ -749,9 +750,6 @@ export default function DisneyParksSection() {
                 marginBottom: 4,
               }}>{park.tag}</div>
               <div style={{
-                fontSize: 22,
-                fontFamily: "'Playfair Display', Georgia, serif",
-                fontWeight: 700,
                 color: "white",
                 lineHeight: 1.1,
               }}>{park.name}</div>
@@ -762,7 +760,7 @@ export default function DisneyParksSection() {
               letterSpacing: "0.15em",
               color: "rgba(255,255,255,0.4)",
               textTransform: "uppercase",
-            }}>{park.since}</div>
+            }}>Est. <CountUp from={1900} to={parseInt(park.since.replace(/\D/g, ''))} duration={0.8} /></div>
           </div>
 
           {/* Progress bar */}
@@ -871,6 +869,6 @@ export default function DisneyParksSection() {
           </div>
         </div>
       </div>
-    </section>
+    </section >
   );
 }

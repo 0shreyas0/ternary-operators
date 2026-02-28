@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useGame } from '../hooks/useGame';
 import { PRINCESS_DATA } from '../constants/princesses';
 import { PrincessSprite } from './PrincessSprite';
+import CountUp from './CountUp';
 
 /**
  * CollectionHUD
@@ -100,7 +101,9 @@ export const CollectionHUD = () => {
               <div className="flex items-center justify-between mb-4">
                 <div>
                   <h3 className="text-white font-sans font-black tracking-widest uppercase text-[13px]">Princess Collection</h3>
-                  <p className="text-white/40 font-sans font-black tracking-widest uppercase text-[10px] mt-1">{collectedCount} of {totalCount} found</p>
+                  <p className="text-white/40 font-sans font-black tracking-widest uppercase text-[10px] mt-1">
+                    <CountUp from={0} to={collectedCount} duration={0.8} /> of <CountUp from={0} to={totalCount} duration={0.8} /> found
+                  </p>
                 </div>
                 {isComplete && (
                   <motion.div

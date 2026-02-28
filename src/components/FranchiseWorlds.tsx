@@ -1,4 +1,5 @@
 import { useState } from "react";
+import CountUp from "./CountUp";
 
 const CARDS = [
   {
@@ -12,7 +13,8 @@ const CARDS = [
     cta: "Explore Films",
     image: "https://thewaltdisneycompany.com/app/uploads/2026/01/Avengers_Doomsday_Teaser-A_1830_Fin16_Digital_Mech1-414x614.jpg",
     gradient: "from-amber-900/80 via-amber-800/30 to-transparent",
-    stat: "100+ Years of Film",
+    statNum: 100,
+    statSuffix: "+ Years of Film",
   },
   {
     id: "parks",
@@ -25,7 +27,8 @@ const CARDS = [
     cta: "Plan Your Visit",
     image: "https://thewaltdisneycompany.com/app/uploads/2023/10/main-street-balloons-768x400.png",
     gradient: "from-blue-900/80 via-blue-800/30 to-transparent",
-    stat: "12 Parks Worldwide",
+    statNum: 12,
+    statSuffix: " Parks Worldwide",
   },
   {
     id: "disneyplus",
@@ -38,7 +41,8 @@ const CARDS = [
     cta: "Start Streaming",
     image: "https://thewaltdisneycompany.com/app/uploads/2025/12/Brands-Graphic-768x432.jpg",
     gradient: "from-indigo-900/80 via-indigo-800/30 to-transparent",
-    stat: "220M+ Subscribers",
+    statNum: 220,
+    statSuffix: "M+ Subscribers",
   },
   {
     id: "merch",
@@ -51,7 +55,8 @@ const CARDS = [
     cta: "Shop Now",
     image: "https://thewaltdisneycompany.com/app/uploads/2026/01/ZTA2_Teaser_2nd_Knot_1s_v5.0_Mech3-414x614.jpg",
     gradient: "from-pink-900/80 via-pink-800/30 to-transparent",
-    stat: "1000+ Products",
+    statNum: 1000,
+    statSuffix: "+ Products",
   },
 ];
 
@@ -281,7 +286,7 @@ export default function DisneyWorldCards() {
                 color: card.accentColor,
                 marginBottom: 6,
               }}>
-                {card.stat}
+                <CountUp from={0} to={card.statNum} duration={0.8} separator="," />{card.statSuffix}
               </div>
 
               {/* Title */}
@@ -355,7 +360,7 @@ export default function DisneyWorldCards() {
                 color: selectedCard.accentColor,
                 marginBottom: 8,
               }}>
-                {selectedCard.stat}
+                <CountUp from={0} to={selectedCard.statNum} duration={0.8} separator="," startWhen={!!selected} />{selectedCard.statSuffix}
               </div>
 
               <h3 style={{
