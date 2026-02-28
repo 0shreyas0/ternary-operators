@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import disneyLogo from '../assets/disney-logo.svg';
+import disneyLogo from '../assets/disney-logo.png';
 import disneyVideo from '../assets/Disney_Intro_Full_HD_1080p_1080p.mp4';
 
 export const HeroSection = () => {

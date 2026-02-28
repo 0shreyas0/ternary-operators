@@ -748,22 +748,6 @@ export default function DisneyPlusSection() {
                         rel="noreferrer"
                         className="stream-btn"
                     >
-                        <div
-                            style={{
-                                width: 20,
-                                height: 20,
-                                borderRadius: "50%",
-                                background: "rgba(255,255,255,0.2)",
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                fontSize: 11,
-                                fontWeight: 900,
-                                flexShrink: 0,
-                            }}
-                        >
-                            D
-                        </div>
                         Start Streaming on Disney+
                     </a>
 

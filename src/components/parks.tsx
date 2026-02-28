@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import magicKingdomImg from "../assets/magic kingdom.png";
 import epcotImg from "../assets/epcot.png";
 import animalKingdomImg from "../assets/animal kingdom.png";
@@ -181,56 +181,55 @@ const PARKS = [
     highlights: ["Enchanted Storybook Castle", "TRON Lightcycle Power Run", "Zootopia Land"],
     image: shanghaiImg,
     fallback: "https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?w=1200&q=80",
-    color: "#EF4444",
+    color: "#D2042D", // Darkened ruby red
   },
 ];
 
 
-// ── Floating parallax park ticket ─────────────────────────────────────────────
+// ── Static Background Park Ticket ─────────────────────────────────────────────
 const FloatingTicket = ({
-  top, left, delay, rotate, parkName, color, speed
+  top, left, rotate, parkName, color
 }: {
-  top: string; left: string; delay: number;
-  rotate: number; parkName: string; color: string; speed: number;
+  top: string; left: string;
+  rotate: number; parkName: string; color: string;
 }) => {
-  const { scrollY } = useScroll();
-  // Each ticket drifts at a different rate — creates parallax depth
-  const y = useTransform(scrollY, [0, 1200], [0, speed]);
-
   return (
     <motion.div
       style={{
         position: "absolute",
         top,
         left,
-        y,
         rotate,
         zIndex: 0,
         transformOrigin: "center center",
       }}
-      initial={{ opacity: 1, scale: 0.8, y: 0 }}
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
       animate={{
-        y: [0, -40, 0],
-        rotate: [rotate, rotate + 8, rotate],
+        x: [0, 8, -6, 0],
+        y: [0, -12, 6, 0],
+        rotate: [rotate, rotate + 3, rotate - 2, rotate],
       }}
-      transition={{
-        duration: 8 + delay * 1.5,
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ 
+        duration: 16 + Math.random() * 8, // Very slow continuous drift
         repeat: Infinity,
-        ease: "easeInOut",
+        ease: "easeInOut" 
       }}
       whileHover={{
-        scale: 1.05,
-        transition: { duration: 0.4, ease: "easeOut" },
+        scale: 1.04,
+        rotate: rotate + 2,
+        transition: { duration: 0.3, ease: "easeOut", repeat: 0 },
       }}
       className="pointer-events-auto"
     >
       {/* ── Ticket body: massive rectangle ── */}
       <div style={{
-        width: 480,
-        height: 180,
+        width: 520,
+        height: 200,
         borderRadius: 16,
         background: color,
-        boxShadow: `0 20px 50px rgba(0,0,0,0.6), inset 0 2px 4px rgba(255,255,255,0.8), inset 0px -2px 4px rgba(0,0,0,0.1)`,
+        boxShadow: `0 20px 50px rgba(0,0,0,0.4), inset 0 2px 4px rgba(255,255,255,0.6), inset 0px -2px 4px rgba(0,0,0,0.1)`,
         display: "flex",
         overflow: "visible", // so cutouts show up outside properly
         position: "relative",
@@ -238,33 +237,33 @@ const FloatingTicket = ({
 
         {/* Left stub (tear zone) */}
         <div style={{
-          width: 120,
-          borderRight: "4px dashed rgba(0,0,0,0.2)",
+          width: 140,
+          borderRight: "4px dashed rgba(0,0,0,0.15)",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
           padding: "16px 12px",
           flexShrink: 0,
-          background: "rgba(0,0,0,0.03)",
+          background: "rgba(0,0,0,0.02)",
           gap: 12,
           position: "relative",
         }}>
-          {/* Left notch circle */}
+           {/* Left notch circle - match parent background precisely */}
           <div style={{
             position: "absolute",
             left: -20, top: "50%",
             transform: "translateY(-50%)",
             width: 40, height: 40, borderRadius: "50%",
-            background: "#020818", /* Match section background absolutely perfectly */
-            boxShadow: "inset -3px 0 6px rgba(0,0,0,0.3)"
+            background: "#020818", 
+            boxShadow: "inset -3px 0 6px rgba(0,0,0,0.4)"
           }} />
 
           {/* Perforation dots */}
           {[...Array(6)].map((_, i) => (
             <div key={i} style={{
               width: 8, height: 8, borderRadius: "50%",
-              background: "rgba(0,0,0,0.15)",
+              background: "rgba(0,0,0,0.1)",
             }} />
           ))}
         </div>
@@ -275,13 +274,13 @@ const FloatingTicket = ({
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          padding: "20px 40px",
+          padding: "24px 44px",
           position: "relative",
         }}>
-          {/* Scanline texture (subtle vintage feel) */}
+          {/* Scanline texture */}
           <div style={{
             position: "absolute", inset: 0,
-            backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 4px, rgba(0,0,0,0.03) 4px, rgba(0,0,0,0.03) 6px)",
+            backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 4px, rgba(0,0,0,0.02) 4px, rgba(0,0,0,0.02) 6px)",
             pointerEvents: "none",
           }} />
 
@@ -300,12 +299,12 @@ const FloatingTicket = ({
             letterSpacing: "0.08em",
             color: "rgba(0,0,0,0.85)",
             textTransform: "uppercase",
-            lineHeight: 1.25,
+            lineHeight: 1.15,
             paddingBottom: 4,
-            // allow wrapping
+            width: "100%",
             whiteSpace: "normal",
             display: "-webkit-box",
-            WebkitLineClamp: 2, // clamp to 2 lines max
+            WebkitLineClamp: 2,
             WebkitBoxOrient: "vertical",
             overflow: "hidden",
           }}>
@@ -327,15 +326,15 @@ const FloatingTicket = ({
           right: -20, top: "50%",
           transform: "translateY(-50%)",
           width: 40, height: 40, borderRadius: "50%",
-          background: "#020818", /* Match section background */
-          boxShadow: "inset 3px 0 6px rgba(0,0,0,0.3)"
+          background: "#020818", 
+          boxShadow: "inset 3px 0 6px rgba(0,0,0,0.4)"
         }} />
       </div>
     </motion.div>
   );
 };
 
-// Vintage cream/paper palettes
+// Vintage cream palettes
 const TICKET_COLORS = [
   "#FDF5E6", // Old Lace
   "#FAF0E6", // Linen
@@ -344,12 +343,12 @@ const TICKET_COLORS = [
 ];
 
 const TICKETS = [
-  { top: "5%", left: "5%", delay: 0, rotate: -12, color: TICKET_COLORS[0], speed: 160, parkName: "Magic Kingdom" },
-  { top: "60%", left: "10%", delay: 1.2, rotate: 8, color: TICKET_COLORS[1], speed: 110, parkName: "EPCOT" },
-  { top: "25%", left: "35%", delay: 2.0, rotate: -5, color: TICKET_COLORS[2], speed: 190, parkName: "Disneyland Park" },
-  { top: "80%", left: "50%", delay: 0.8, rotate: 14, color: TICKET_COLORS[3], speed: 80, parkName: "Disney's Animal Kingdom" },
-  { top: "10%", left: "70%", delay: 0.4, rotate: -18, color: TICKET_COLORS[1], speed: 145, parkName: "Tokyo DisneySea" },
-  { top: "45%", left: "75%", delay: 1.6, rotate: 6, color: TICKET_COLORS[0], speed: 120, parkName: "Disneyland Paris Theme Park" }
+  { top: "5%", left: "5%", rotate: -12, color: TICKET_COLORS[0], parkName: "Magic Kingdom" },
+  { top: "25%", left: "65%", rotate: 8, color: TICKET_COLORS[1], parkName: "EPCOT" },
+  { top: "45%", left: "10%", rotate: -5, color: TICKET_COLORS[2], parkName: "Disneyland Park" },
+  { top: "65%", left: "60%", rotate: 14, color: TICKET_COLORS[3], parkName: "Disney's Animal Kingdom" },
+  { top: "82%", left: "5%", rotate: -18, color: TICKET_COLORS[1], parkName: "Tokyo DisneySea" },
+  { top: "95%", left: "55%", rotate: 6, color: TICKET_COLORS[0], parkName: "Disneyland Paris Theme Park" }
 ];
 
 function ParkImage({ park, active }: { park: typeof PARKS[0]; active: boolean }) {
@@ -438,6 +437,8 @@ export default function DisneyParksSection() {
         {TICKETS.map((t, i) => (
           <FloatingTicket key={i} {...t} />
         ))}
+        {/* Dark dimming overlay to ensure white text remains perfectly legible over bright cream tickets */}
+        <div className="absolute inset-0 bg-[#020818]/85 z-10 pointer-events-none" />
       </div>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
