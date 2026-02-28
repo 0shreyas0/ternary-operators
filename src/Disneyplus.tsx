@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import bg2 from './assets/background2.webp';
 import CountUp from "./components/CountUp";
+import { useSectionObserver } from './hooks/useActiveSection';
 
 interface Show {
     id: number;
@@ -221,6 +222,9 @@ function ShowImage({ show, active }: { show: Show; active: boolean }) {
 export default function DisneyPlusSection() {
     const [active, setActive] = useState(0);
     const [animating, setAnimating] = useState(false);
+    const sectionRef = useRef<HTMLElement>(null);
+
+    useSectionObserver("streaming", sectionRef);
 
     // Derive currently-displayed show from active index
     const show = SHOWS[active];
@@ -299,6 +303,7 @@ export default function DisneyPlusSection() {
 
     return (
         <section
+            ref={sectionRef}
             style={{
                 backgroundColor: "#21182A",
                 padding: "80px 0",

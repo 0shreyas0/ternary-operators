@@ -2,11 +2,15 @@ import { useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import disneyLogo from '../assets/disney-logo.png';
 import disneyVideo from '../assets/Disney_Intro_Full_HD_1080p_1080p.mp4';
+import { useSectionObserver } from '../hooks/useActiveSection';
 
 export const HeroSection = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
   const [logoVisible, setLogoVisible] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
+
+  useSectionObserver('home', sectionRef);
 
   const handleTimeUpdate = () => {
     const video = videoRef.current;
@@ -26,7 +30,7 @@ export const HeroSection = () => {
   };
 
   return (
-    <section className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden">
+    <section ref={sectionRef} className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden">
 
       {/* Local Video Background */}
       <div className="absolute inset-0 w-full h-full z-0 pointer-events-none overflow-hidden">

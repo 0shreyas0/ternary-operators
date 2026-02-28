@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import posterWalt from '../assets/poster_walt.png';
 import posterSteamboat from '../assets/poster_steamboat_willy.png';
 import posterSnowWhite from '../assets/poster_snow_white.png';
 import posterFrozen from '../assets/poster_frozen.png';
 import posterFamily from '../assets/poster_family.png';
+import { useSectionObserver } from '../hooks/useActiveSection';
 
 const carouselData = [
   {
@@ -75,6 +76,9 @@ const swipePower = (offset: number, velocity: number) => {
 export const HeroCarousel = () => {
   const [[page, direction], setPage] = useState([0, 0]);
   const [isHovered, setIsHovered] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useSectionObserver('carousel', sectionRef);
 
   // We only have 5 slides, so we wrap the index
   const imageIndex = Math.abs(page % carouselData.length);
@@ -95,7 +99,7 @@ export const HeroCarousel = () => {
   }, [page, isHovered]);
 
   return (
-    <div className="w-full max-w-7xl mx-auto my-12 relative z-10">
+    <div ref={sectionRef} className="w-full max-w-7xl mx-auto my-12 relative z-10">
       <div className="text-center mb-10">
 
         <motion.p

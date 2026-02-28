@@ -9,6 +9,7 @@ import frozenImg from '../assets/frozen.png';
 import moanaImg from '../assets/Moana.png';
 import snowWhiteImg from '../assets/snow white.png';
 import CountUp from './CountUp';
+import { useSectionObserver } from '../hooks/useActiveSection';
 
 // Patch Lion King with local asset
 const PATCHED_REEL = FILM_REEL.map(f =>
@@ -25,9 +26,12 @@ const LOOP_ITEMS = [...PATCHED_REEL, ...PATCHED_REEL, ...PATCHED_REEL];
 
 export const FilmReel = () => {
   const reelRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  
+  useSectionObserver('filmreel', sectionRef);
 
   return (
-    <section className="w-full py-28 bg-[#010610] overflow-hidden">
+    <section ref={sectionRef} className="w-full py-28 bg-[#010610] overflow-hidden">
       {/* Header */}
       <div className="text-center mb-12 px-4">
         <motion.p

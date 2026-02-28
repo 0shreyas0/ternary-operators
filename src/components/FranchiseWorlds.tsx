@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import CountUp from "./CountUp";
+import { useSectionObserver } from '../hooks/useActiveSection';
 
 const CARDS = [
   {
@@ -63,11 +64,15 @@ const CARDS = [
 export default function DisneyWorldCards() {
   const [hovered, setHovered] = useState<string | null>(null);
   const [selected, setSelected] = useState<string | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useSectionObserver('worlds', sectionRef);
 
   const selectedCard = CARDS.find((c) => c.id === selected);
 
   return (
     <section
+      ref={sectionRef}
       style={{
         position: "relative",
         width: "100%",

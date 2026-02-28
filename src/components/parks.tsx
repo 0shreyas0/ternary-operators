@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { useSectionObserver } from '../hooks/useActiveSection';
 import magicKingdomImg from "../assets/magic kingdom.png";
 import epcotImg from "../assets/epcot.png";
 import animalKingdomImg from "../assets/animal kingdom.png";
@@ -381,6 +382,9 @@ export default function DisneyParksSection() {
   const [animating, setAnimating] = useState(false);
   const listRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const sectionRef = useRef<HTMLElement>(null);
+  
+  useSectionObserver("parks", sectionRef);
 
   const goTo = (i: number) => {
     if (i === active || animating) return;
@@ -411,7 +415,9 @@ export default function DisneyParksSection() {
   const park = PARKS[active];
 
   return (
-    <section style={{
+    <section 
+      ref={sectionRef}
+      style={{
       backgroundColor: "#21182A",
       padding: "80px 0",
       fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",

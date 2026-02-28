@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import bg3 from './assets/background3.jpg';
 import CountUp from "./components/CountUp";
+import { useSectionObserver } from './hooks/useActiveSection';
 
 /* ─── Catalogue ─────────────────────────────────────────────────────────── */
 const MERCH = [
@@ -375,10 +376,13 @@ function MerchCard({ item, isSelected, anySelected, onSelect }) {
 export default function MerchSection() {
     const [selected, setSelected] = useState(null);
     const stripRef = useRef(null);
+    const sectionRef = useRef(null);
     const isDragging = useRef(false);
     const isDown = useRef(false);
     const startX = useRef(0);
     const scrollLeftRef = useRef(0);
+
+    useSectionObserver("merch", sectionRef);
 
     const anySelected = selected !== null;
 
@@ -411,7 +415,7 @@ export default function MerchSection() {
     };
 
     return (
-        <section style={{
+        <section ref={sectionRef} style={{
             backgroundColor: "transparent",
             padding: "80px 0 96px",
             fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
