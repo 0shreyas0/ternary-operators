@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from 'react';
+import { createContext, useContext, useState, useCallback, type ReactNode } from 'react';
 import { PRINCESS_DATA } from '../constants/princesses';
 
 // ── Types ──────────────────────────────────────────────────────────────────────
@@ -21,25 +21,14 @@ interface GameContextType {
 // ── Context ────────────────────────────────────────────────────────────────────
 const GameContext = createContext<GameContextType | null>(null);
 
-const STORAGE_KEY = 'disney-princess-collected';
 
 // ── Provider ───────────────────────────────────────────────────────────────────
 export const GameProvider = ({ children }: { children: ReactNode }) => {
-  const [collected, setCollected] = useState<Set<number>>(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      return saved ? new Set<number>(JSON.parse(saved)) : new Set<number>();
-    } catch {
-      return new Set<number>();
-    }
-  });
+  const [collected, setCollected] = useState<Set<number>>(new Set());
 
   const [lastCollected, setLastCollected] = useState<CollectedPrincess | null>(null);
 
-  // Persist to localStorage on every change
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify([...collected]));
-  }, [collected]);
+
 
   const collect = useCallback((id: number) => {
     if (collected.has(id)) return; // already found
