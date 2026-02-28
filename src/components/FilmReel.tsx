@@ -34,16 +34,35 @@ export const FilmReel = () => {
   return (
     <section ref={sectionRef} className="w-full py-28 bg-[#010610] overflow-hidden">
       {/* Header */}
-      <div className="text-center mb-12 px-4">
+      <div style={{
+        padding: "0 clamp(20px, 5vw, 72px)",
+        marginBottom: 48,
+        position: "relative",
+      }}>
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-amber-400 text-xs font-bold tracking-widest uppercase mb-3"
+          style={{
+            color: "#D4AF37",
+            fontSize: 10,
+            fontWeight: 700,
+            letterSpacing: "0.25em",
+            textTransform: "uppercase",
+            marginBottom: 10,
+          }}
         >
-          ✦ A Century of Cinema ✦
+          A Century of Cinema
         </motion.p>
-        <h2 className="text-4xl md:text-5xl font-serif font-bold text-white">
+        <h2 style={{
+          fontFamily: "'Playfair Display', 'Palatino Linotype', Georgia, serif",
+          fontSize: "clamp(26px, 3.5vw, 42px)",
+          fontWeight: 700,
+          color: "#ffffff",
+          lineHeight: 1.1,
+          margin: 0,
+          letterSpacing: "-0.02em",
+        }}>
           <SplitTextAnim
             text="The Magic on Film"
             delay={50}
