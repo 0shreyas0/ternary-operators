@@ -1,15 +1,22 @@
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { FILM_REEL } from '../constants';
+import lionKingImg from '../assets/lionking.png';
+import fantasiaImg from '../assets/fantasia.png';
 
-// Duplicate for seamless loop
-const LOOP_ITEMS = [...FILM_REEL, ...FILM_REEL, ...FILM_REEL];
+// Patch Lion King with local asset
+const PATCHED_REEL = FILM_REEL.map(f =>
+  f.title === 'The Lion King' ? { ...f, image: lionKingImg }
+    : f.title === 'Fantasia' ? { ...f, image: fantasiaImg }
+      : f
+);
+const LOOP_ITEMS = [...PATCHED_REEL, ...PATCHED_REEL, ...PATCHED_REEL];
 
 export const FilmReel = () => {
   const reelRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section className="w-full py-20 bg-[#010610] overflow-hidden">
+    <section className="w-full py-28 bg-[#010610] overflow-hidden">
       {/* Header */}
       <div className="text-center mb-12 px-4">
         <motion.p
@@ -58,8 +65,8 @@ export const FilmReel = () => {
               key={i}
               whileHover={{ scale: 1.08, y: -8, zIndex: 10 }}
               transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              className="relative flex-shrink-0 w-36 md:w-44 rounded-2xl overflow-hidden border-2 border-[#333] shadow-xl cursor-pointer group"
-              style={{ height: 220 }}
+              className="relative flex-shrink-0 w-48 md:w-56 rounded-2xl overflow-hidden border-2 border-[#333] shadow-xl cursor-pointer group"
+              style={{ height: 320 }}
             >
               <img
                 src={film.image}
@@ -72,8 +79,8 @@ export const FilmReel = () => {
                 style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\'/%3E%3C/svg%3E")' }}
               />
               <div className="absolute bottom-3 left-3 right-3">
-                <p className="text-white text-xs font-bold leading-tight">{film.title}</p>
-                <p className="text-amber-400 text-[10px] font-bold mt-0.5">{film.year}</p>
+                <p className="text-white text-4xl font-extrabold leading-tight drop-shadow-lg">{film.title}</p>
+                <p className="text-amber-400 text-base font-extrabold mt-1">{film.year}</p>
               </div>
             </motion.div>
           ))}
