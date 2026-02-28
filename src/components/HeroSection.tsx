@@ -37,7 +37,7 @@ export const HeroSection = () => {
           muted
           playsInline
           onLoadedMetadata={(e) => { (e.target as HTMLVideoElement).currentTime = 1; }}
-          onPlay={(e) => { (e.target as HTMLVideoElement).playbackRate = 1.75; }}
+          onPlay={(e) => { (e.target as HTMLVideoElement).playbackRate = 2.75; }}
           onTimeUpdate={handleTimeUpdate}
           style={{
             position: 'absolute',

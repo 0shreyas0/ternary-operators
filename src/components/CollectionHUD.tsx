@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useGame } from '../hooks/useGame';
 import { PRINCESS_DATA } from '../constants/princesses';
@@ -14,6 +14,13 @@ import { PrincessSprite } from './PrincessSprite';
 export const CollectionHUD = () => {
   const { collected, lastCollected, collectedCount, totalCount, isComplete } = useGame();
   const [open, setOpen] = useState(false);
+  const [showHint, setShowHint] = useState(true);
+
+  // Auto-dismiss the hint after 5 seconds
+  useEffect(() => {
+    const t = setTimeout(() => setShowHint(false), 5000);
+    return () => clearTimeout(t);
+  }, []);
 
   const progress = (collectedCount / totalCount) * 100;
 
@@ -48,6 +55,39 @@ export const CollectionHUD = () => {
 
       {/* ── HUD Button + Panel ── */}
       <div className="fixed bottom-4 right-4 z-[199]">
+
+        {/* Hint tooltip */}
+        <AnimatePresence>
+          {showHint && !open && (
+            <motion.div
+              initial={{ opacity: 0, y: 8, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 8, scale: 0.9 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 22 }}
+              className="absolute bottom-16 right-0 mb-1 w-52 rounded-2xl bg-black/80 backdrop-blur-xl border border-amber-400/30 shadow-[0_0_20px_rgba(251,191,36,0.2)] px-4 py-3 text-center pointer-events-none"
+            >
+              {/* Arrow pointing down */}
+              <div className="absolute -bottom-2 right-5 w-3 h-3 bg-black/80 border-r border-b border-amber-400/30 rotate-45" />
+              <motion.p
+                animate={{ backgroundPosition: ['200% center', '-200% center'] }}
+                transition={{ repeat: Infinity, duration: 2.5, ease: 'linear' }}
+                className="font-bold text-sm mb-1"
+                style={{
+                  background: 'linear-gradient(90deg, #fbbf24 0%, #fff7ae 30%, #f472b6 50%, #fff7ae 70%, #fbbf24 100%)',
+                  backgroundSize: '200% auto',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}
+              >
+                ✨ Hidden Princess Hunt!
+              </motion.p>
+              <p className="text-white/60 text-[11px] leading-snug">
+                Explore the page to find hidden princesses scattered throughout!
+              </p>
+            </motion.div>
+          )}
+        </AnimatePresence>
         <AnimatePresence>
           {open && (
             <motion.div
