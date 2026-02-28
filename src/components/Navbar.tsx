@@ -9,9 +9,14 @@ export const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50">
+    <motion.nav
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+      className="fixed top-0 left-0 right-0 z-50 pointer-events-none"
+    >
       {/* Glassmorphic bar — logo left | links center | mickey right */}
-      <div className="mx-4 mt-4 rounded-2xl bg-black/40 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)] px-6 py-2.5 grid grid-cols-3 items-center">
+      <div className="mx-auto max-w-fit mt-6 rounded-full bg-black/40 backdrop-blur-2xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)] px-8 py-2 flex items-center gap-12 pointer-events-auto">
 
         {/* Left — Castle logo */}
         <div className="flex items-center">
@@ -50,6 +55,6 @@ export const Navbar = () => {
       </div>
 
       <NavMobileMenu isOpen={mobileOpen} onClose={() => setMobileOpen(false)} />
-    </nav>
+    </motion.nav>
   );
 };

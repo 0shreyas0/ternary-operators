@@ -58,9 +58,6 @@ function App() {
             {/* 1 ── Full-screen hero with starfield + parallax */}
             <section id="hero" className="relative">
               <HeroSection />
-              {bySection('hero').map(p => (
-                <HiddenPrincess key={p.id} id={p.id} x={p.x} y={p.y} />
-              ))}
             </section>
 
             {/* 2 ── Disney history carousel */}
