@@ -32,7 +32,7 @@ export const Navbar = () => {
                 whileTap={{ scale: 0.95 }}
                 onHoverStart={() => setActiveItem(item.label)}
                 onHoverEnd={() => setActiveItem(null)}
-                className="relative flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold text-white/80 hover:text-white transition-colors"
+                className="relative flex items-center gap-1.5 px-4 py-4 rounded-xl text-sm font-semibold text-white/80 hover:text-white transition-colors"
               >
                 <span>{item.label}</span>
                 <AnimatePresence>
