@@ -79,7 +79,7 @@ export const SiteFooter = () => {
             <div className="max-w-7xl mx-auto px-6 py-16">
 
                 {/* Top row: logo + links */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-14">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-14">
 
                     {/* Logo & tagline */}
                     <div className="flex flex-col items-start gap-4">
