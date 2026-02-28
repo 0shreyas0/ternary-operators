@@ -425,7 +425,6 @@ export default function DisneyParksSection() {
         backgroundImage: `url(${bg1})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundAttachment: "fixed",
         opacity: 0.08,
         filter: "grayscale(100%)",
         pointerEvents: "none",
