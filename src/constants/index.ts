@@ -1,6 +1,6 @@
 // ── Navigation Items ───────────────────────────────────────────────────────
 export const NAV_ITEMS = [
-  { label: "Movies", emoji: "🎬", href: "#movies" },
+  { label: "Movies", emoji: "🎬", href: "#filmreel" },
   { label: "Parks", emoji: "🏰", href: "#parks" },
   { label: "Disney+", emoji: "✨", href: "#streaming" },
   { label: "Merch", emoji: "🎁", href: "#merch" },
