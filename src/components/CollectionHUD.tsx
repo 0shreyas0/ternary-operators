@@ -43,11 +43,11 @@ export const CollectionHUD = () => {
               <PrincessSprite spriteIndex={lastCollected.id} displayWidth={22} cropHeight={40} />
             </motion.div>
             <div>
-              <p className="text-xs font-bold tracking-widest uppercase" style={{ color: lastCollected.color }}>
+              <p className="text-xs font-sans font-black tracking-widest uppercase" style={{ color: lastCollected.color }}>
                 Found!
               </p>
-              <p className="text-white font-bold text-sm">{lastCollected.name}</p>
-              <p className="text-white/50 text-[10px]">{collectedCount} / {totalCount} collected</p>
+              <p className="text-white font-sans font-black text-sm tracking-widest uppercase">{lastCollected.name}</p>
+              <p className="text-white/50 text-[10px] font-sans font-black tracking-widest uppercase">{collectedCount} / {totalCount} collected</p>
             </div>
           </motion.div>
         )}
@@ -71,7 +71,7 @@ export const CollectionHUD = () => {
               <motion.p
                 animate={{ backgroundPosition: ['200% center', '-200% center'] }}
                 transition={{ repeat: Infinity, duration: 2.5, ease: 'linear' }}
-                className="font-bold text-sm mb-1"
+                className="font-sans font-black tracking-widest uppercase text-[13px] mb-1"
                 style={{
                   background: 'linear-gradient(90deg, #fbbf24 0%, #fff7ae 30%, #f472b6 50%, #fff7ae 70%, #fbbf24 100%)',
                   backgroundSize: '200% auto',
@@ -99,8 +99,8 @@ export const CollectionHUD = () => {
               {/* Header */}
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <h3 className="text-white font-bold text-sm">Princess Collection</h3>
-                  <p className="text-white/40 text-xs">{collectedCount} of {totalCount} found</p>
+                  <h3 className="text-white font-sans font-black tracking-widest uppercase text-[13px]">Princess Collection</h3>
+                  <p className="text-white/40 font-sans font-black tracking-widest uppercase text-[10px] mt-1">{collectedCount} of {totalCount} found</p>
                 </div>
                 {isComplete && (
                   <motion.div
@@ -147,7 +147,7 @@ export const CollectionHUD = () => {
                           grayscale={!found}
                         />
                       </div>
-                      <p className={`text-[8px] text-center leading-none truncate w-full px-0.5 ${found ? 'text-white/60' : 'text-white/20'}`}>
+                      <p className={`text-[8px] font-sans font-black tracking-widest uppercase text-center leading-none truncate w-full px-0.5 ${found ? 'text-white/60' : 'text-white/20'}`}>
                         {found ? p.name.split(' ')[0] : '?'}
                       </p>
                     </motion.div>
@@ -161,8 +161,8 @@ export const CollectionHUD = () => {
                   animate={{ opacity: 1, y: 0 }}
                   className="mt-4 text-center py-3 rounded-2xl bg-gradient-to-r from-pink-500/20 to-amber-500/20 border border-amber-400/20"
                 >
-                  <p className="text-amber-300 font-bold text-sm">✨ Royal Court Complete! ✨</p>
-                  <p className="text-white/50 text-xs mt-1">You found every princess!</p>
+                  <p className="text-amber-300 font-sans font-black tracking-widest uppercase text-[13px]">✨ Royal Court Complete! ✨</p>
+                  <p className="text-white/50 font-sans font-black tracking-widest uppercase text-[10px] mt-1">You found every princess!</p>
                 </motion.div>
               )}
             </motion.div>

@@ -16,7 +16,7 @@ export const NavMobileMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: (
             key={item.label}
             href={item.href}
             onClick={onClose}
-            className="flex items-center gap-3 px-4 py-3 rounded-xl text-white/80 hover:text-white hover:bg-white/10 font-semibold transition-all"
+            className="flex items-center gap-3 px-4 py-3 rounded-xl text-white/80 hover:text-white hover:bg-white/10 font-black tracking-widest uppercase text-sm transition-all"
           >
             <span>{item.label}</span>
           </a>

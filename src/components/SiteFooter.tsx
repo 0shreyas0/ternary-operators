@@ -98,7 +98,7 @@ export const SiteFooter = () => {
                     {/* Link columns */}
                     {footerLinks.map((col) => (
                         <div key={col.heading}>
-                            <p className="text-amber-400 text-xs font-bold tracking-widest uppercase mb-4">
+                            <p className="text-amber-400 text-xs font-sans font-black tracking-widest uppercase mb-4">
                                 {col.heading}
                             </p>
                             <ul className="flex flex-col gap-3">
@@ -106,7 +106,7 @@ export const SiteFooter = () => {
                                     <li key={link.label}>
                                         <a
                                             href={link.href}
-                                            className="text-white/50 hover:text-white text-sm transition-colors duration-200"
+                                            className="text-white/50 hover:text-white font-sans font-black text-sm tracking-widest uppercase transition-colors duration-200"
                                         >
                                             {link.label}
                                         </a>
@@ -119,7 +119,7 @@ export const SiteFooter = () => {
 
                 {/* Bottom row: copyright + socials */}
                 <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-8 border-t border-white/10">
-                    <p className="text-white/30 text-xs text-center md:text-left">
+                    <p className="text-white/30 font-sans font-black tracking-widest uppercase text-xs text-center md:text-left">
                         © {new Date().getFullYear()} The Walt Disney Company. All Rights Reserved.
                     </p>
 

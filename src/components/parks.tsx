@@ -195,60 +195,63 @@ const FloatingTicket = ({
         zIndex: 0,
         transformOrigin: "center center",
       }}
-      initial={{ opacity: 0, scale: 0.7 }}
+      initial={{ opacity: 1, scale: 0.8, y: 0 }}
       animate={{
-        opacity: [0.12, 0.22, 0.12],
-        scale: [1, 1.04, 1],
-        x: [0, 6, -4, 0],
-        rotate: [rotate, rotate + 5, rotate - 3, rotate],
+        y: [0, -40, 0],
+        rotate: [rotate, rotate + 8, rotate],
       }}
       transition={{
-        duration: 8 + delay * 1.2,
+        duration: 8 + delay * 1.5,
         repeat: Infinity,
-        delay,
         ease: "easeInOut",
       }}
       whileHover={{
-        opacity: 1,
-        scale: 1.12,
-        filter: "grayscale(0) brightness(1.3)",
-        transition: { duration: 0.3 },
+        scale: 1.05,
+        transition: { duration: 0.4, ease: "easeOut" },
       }}
       className="pointer-events-auto"
     >
-      {/* ── Ticket body: longer rectangle ── */}
+      {/* ── Ticket body: massive rectangle ── */}
       <div style={{
-        width: 160,
-        height: 60,
-        borderRadius: 8,
-        background: `linear-gradient(135deg, ${color}dd 0%, ${color}88 100%)`,
-        border: "1px solid rgba(255,255,255,0.25)",
-        boxShadow: `0 8px 32px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.2)`,
+        width: 480,
+        height: 180,
+        borderRadius: 16,
+        background: color,
+        boxShadow: `0 20px 50px rgba(0,0,0,0.6), inset 0 2px 4px rgba(255,255,255,0.8), inset 0px -2px 4px rgba(0,0,0,0.1)`,
         display: "flex",
-        overflow: "hidden",
+        overflow: "visible", // so cutouts show up outside properly
         position: "relative",
-        filter: "grayscale(0.7)",
-        transition: "filter 0.4s ease",
       }}>
 
         {/* Left stub (tear zone) */}
         <div style={{
-          width: 44,
-          borderRight: "2px dashed rgba(255,255,255,0.25)",
+          width: 120,
+          borderRight: "4px dashed rgba(0,0,0,0.2)",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          padding: "6px 4px",
+          padding: "16px 12px",
           flexShrink: 0,
-          background: "rgba(0,0,0,0.18)",
-          gap: 3,
+          background: "rgba(0,0,0,0.03)",
+          gap: 12,
+          position: "relative",
         }}>
+           {/* Left notch circle */}
+          <div style={{
+            position: "absolute",
+            left: -20, top: "50%",
+            transform: "translateY(-50%)",
+            width: 40, height: 40, borderRadius: "50%",
+            background: "#020818", /* Match section background absolutely perfectly */
+            boxShadow: "inset -3px 0 6px rgba(0,0,0,0.3)"
+          }} />
+
           {/* Perforation dots */}
-          {[...Array(5)].map((_, i) => (
+          {[...Array(6)].map((_, i) => (
             <div key={i} style={{
-              width: 3, height: 3, borderRadius: "50%",
-              background: "rgba(255,255,255,0.35)",
+              width: 8, height: 8, borderRadius: "50%",
+              background: "rgba(0,0,0,0.15)",
             }} />
           ))}
         </div>
@@ -259,69 +262,81 @@ const FloatingTicket = ({
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          padding: "6px 10px",
+          padding: "20px 40px",
           position: "relative",
         }}>
-          {/* Scanline texture */}
+          {/* Scanline texture (subtle vintage feel) */}
           <div style={{
             position: "absolute", inset: 0,
-            backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255,255,255,0.03) 3px, rgba(255,255,255,0.03) 4px)",
+            backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 4px, rgba(0,0,0,0.03) 4px, rgba(0,0,0,0.03) 6px)",
             pointerEvents: "none",
           }} />
 
           <div style={{
-            fontSize: 7,
+            fontSize: 16,
             fontWeight: 800,
-            letterSpacing: "0.22em",
+            letterSpacing: "0.25em",
             textTransform: "uppercase",
-            color: "rgba(255,255,255,0.45)",
-            marginBottom: 3,
+            color: "rgba(0,0,0,0.4)",
+            marginBottom: 8,
           }}>ADMIT ONE</div>
+          
           <div style={{
-            fontSize: 9.5,
-            fontWeight: 800,
-            letterSpacing: "0.06em",
-            color: "rgba(255,255,255,0.9)",
+            fontSize: 28,
+            fontWeight: 900,
+            letterSpacing: "0.08em",
+            color: "rgba(0,0,0,0.85)",
             textTransform: "uppercase",
-            whiteSpace: "nowrap",
+            lineHeight: 1.25,
+            paddingBottom: 4,
+            // allow wrapping
+            whiteSpace: "normal",
+            display: "-webkit-box",
+            WebkitLineClamp: 2, // clamp to 2 lines max
+            WebkitBoxOrient: "vertical",
             overflow: "hidden",
-            textOverflow: "ellipsis",
-          }}>{parkName}</div>
+          }}>
+            {parkName}
+          </div>
+          
           <div style={{
-            fontSize: 6.5,
-            color: "rgba(255,255,255,0.35)",
-            marginTop: 3,
-            letterSpacing: "0.1em",
+            fontSize: 14,
+            fontWeight: 700,
+            color: "rgba(0,0,0,0.35)",
+            marginTop: 12,
+            letterSpacing: "0.15em",
           }}>DISNEY PARKS · VALID FOR ENTRY</div>
         </div>
 
-        {/* Right notch circles (classic ticket cutout) */}
+        {/* Right notch circle */}
         <div style={{
           position: "absolute",
-          left: 38, top: "50%",
+          right: -20, top: "50%",
           transform: "translateY(-50%)",
-          width: 10, height: 10, borderRadius: "50%",
-          background: "rgba(2,8,24,0.6)",
-          border: "1px solid rgba(255,255,255,0.12)",
+          width: 40, height: 40, borderRadius: "50%",
+          background: "#020818", /* Match section background */
+          boxShadow: "inset 3px 0 6px rgba(0,0,0,0.3)"
         }} />
       </div>
     </motion.div>
   );
 };
 
+// Vintage cream/paper palettes
+const TICKET_COLORS = [
+  "#FDF5E6", // Old Lace
+  "#FAF0E6", // Linen
+  "#FFF8DC", // Cornsilk
+  "#F5F5DC", // Beige
+];
+
 const TICKETS = [
-  { top: "4%", left: "2%", delay: 0, rotate: -12, color: "#F59E0B", speed: 160, parkName: "Magic Kingdom" },
-  { top: "28%", left: "16%", delay: 1.2, rotate: 8, color: "#8B5CF6", speed: 110, parkName: "EPCOT" },
-  { top: "58%", left: "5%", delay: 0.5, rotate: -5, color: "#EF4444", speed: 190, parkName: "Disneyland Park" },
-  { top: "78%", left: "20%", delay: 2.0, rotate: 14, color: "#10B981", speed: 80, parkName: "Animal Kingdom" },
-  { top: "5%", left: "67%", delay: 0.9, rotate: -18, color: "#0EA5E9", speed: 145, parkName: "Tokyo DisneySea" },
-  { top: "35%", left: "80%", delay: 1.6, rotate: 6, color: "#EC4899", speed: 120, parkName: "Disneyland Paris" },
-  { top: "62%", left: "86%", delay: 2.8, rotate: -9, color: "#F97316", speed: 200, parkName: "California Adventure" },
-  { top: "88%", left: "72%", delay: 3.2, rotate: 11, color: "#6366F1", speed: 95, parkName: "Hollywood Studios" },
-  { top: "42%", left: "58%", delay: 1.8, rotate: -22, color: "#14B8A6", speed: 175, parkName: "Tokyo Disneyland" },
-  { top: "70%", left: "44%", delay: 0.4, rotate: 16, color: "#D946EF", speed: 130, parkName: "Hong Kong Disneyland" },
-  { top: "85%", left: "1%", delay: 2.3, rotate: -7, color: "#EF4444", speed: 85, parkName: "Shanghai Disneyland" },
-  { top: "18%", left: "40%", delay: 3.8, rotate: 20, color: "#3B82F6", speed: 155, parkName: "Walt Disney Studios" },
+  { top: "5%", left: "5%", delay: 0, rotate: -12, color: TICKET_COLORS[0], speed: 160, parkName: "Magic Kingdom" },
+  { top: "60%", left: "10%", delay: 1.2, rotate: 8, color: TICKET_COLORS[1], speed: 110, parkName: "EPCOT" },
+  { top: "25%", left: "35%", delay: 2.0, rotate: -5, color: TICKET_COLORS[2], speed: 190, parkName: "Disneyland Park" },
+  { top: "80%", left: "50%", delay: 0.8, rotate: 14, color: TICKET_COLORS[3], speed: 80, parkName: "Disney's Animal Kingdom" },
+  { top: "10%", left: "70%", delay: 0.4, rotate: -18, color: TICKET_COLORS[1], speed: 145, parkName: "Tokyo DisneySea" },
+  { top: "45%", left: "75%", delay: 1.6, rotate: 6, color: TICKET_COLORS[0], speed: 120, parkName: "Disneyland Paris Theme Park" }
 ];
 
 function ParkImage({ park, active }: { park: typeof PARKS[0]; active: boolean }) {

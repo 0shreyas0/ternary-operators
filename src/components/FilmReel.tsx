@@ -81,7 +81,7 @@ export const FilmReel = () => {
               <img
                 src={film.image}
                 alt={film.title}
-                className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+                className="w-full h-full object-contain bg-black group-hover:scale-110 group-hover:brightness-110 transition-all duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent" />
               {/* Grain overlay */}
