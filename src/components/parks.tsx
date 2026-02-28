@@ -174,36 +174,154 @@ const PARKS = [
 
 
 // ── Floating parallax park ticket ─────────────────────────────────────────────
-const FloatingTicket = ({ top, left, delay }: { top: string; left: string; delay: number }) => {
+const FloatingTicket = ({
+  top, left, delay, rotate, parkName, color, speed
+}: {
+  top: string; left: string; delay: number;
+  rotate: number; parkName: string; color: string; speed: number;
+}) => {
   const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 1000], [0, 200]);
+  // Each ticket drifts at a different rate — creates parallax depth
+  const y = useTransform(scrollY, [0, 1200], [0, speed]);
 
   return (
     <motion.div
-      style={{ position: "absolute", top, left, y, zIndex: 0 }}
-      animate={{ rotate: [0, 10, -10, 0], scale: [1, 1.05, 1] }}
-      transition={{ duration: 6, repeat: Infinity, delay }}
-      className="w-24 h-12 opacity-20 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-700 pointer-events-auto"
+      style={{
+        position: "absolute",
+        top,
+        left,
+        y,
+        rotate,
+        zIndex: 0,
+        transformOrigin: "center center",
+      }}
+      initial={{ opacity: 0, scale: 0.7 }}
+      animate={{
+        opacity: [0.12, 0.22, 0.12],
+        scale: [1, 1.04, 1],
+        x: [0, 6, -4, 0],
+        rotate: [rotate, rotate + 5, rotate - 3, rotate],
+      }}
+      transition={{
+        duration: 8 + delay * 1.2,
+        repeat: Infinity,
+        delay,
+        ease: "easeInOut",
+      }}
+      whileHover={{
+        opacity: 1,
+        scale: 1.12,
+        filter: "grayscale(0) brightness(1.3)",
+        transition: { duration: 0.3 },
+      }}
+      className="pointer-events-auto"
     >
-      <div className="w-full h-full bg-gradient-to-r from-yellow-500 to-amber-600 rounded-md border border-white/30 flex items-center justify-center p-1 shadow-2xl">
-        <div className="border border-white/20 w-full h-full rounded flex flex-col items-center justify-center">
-          <span className="text-[8px] font-bold text-white uppercase tracking-tighter italic">Disney Parks</span>
-          <span className="text-[5px] text-white/60">VALID FOR ENTRY</span>
+      {/* ── Ticket body: longer rectangle ── */}
+      <div style={{
+        width: 160,
+        height: 60,
+        borderRadius: 8,
+        background: `linear-gradient(135deg, ${color}dd 0%, ${color}88 100%)`,
+        border: "1px solid rgba(255,255,255,0.25)",
+        boxShadow: `0 8px 32px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.2)`,
+        display: "flex",
+        overflow: "hidden",
+        position: "relative",
+        filter: "grayscale(0.7)",
+        transition: "filter 0.4s ease",
+      }}>
+
+        {/* Left stub (tear zone) */}
+        <div style={{
+          width: 44,
+          borderRight: "2px dashed rgba(255,255,255,0.25)",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "6px 4px",
+          flexShrink: 0,
+          background: "rgba(0,0,0,0.18)",
+          gap: 3,
+        }}>
+          {/* Perforation dots */}
+          {[...Array(5)].map((_, i) => (
+            <div key={i} style={{
+              width: 3, height: 3, borderRadius: "50%",
+              background: "rgba(255,255,255,0.35)",
+            }} />
+          ))}
         </div>
+
+        {/* Main ticket area */}
+        <div style={{
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          padding: "6px 10px",
+          position: "relative",
+        }}>
+          {/* Scanline texture */}
+          <div style={{
+            position: "absolute", inset: 0,
+            backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255,255,255,0.03) 3px, rgba(255,255,255,0.03) 4px)",
+            pointerEvents: "none",
+          }} />
+
+          <div style={{
+            fontSize: 7,
+            fontWeight: 800,
+            letterSpacing: "0.22em",
+            textTransform: "uppercase",
+            color: "rgba(255,255,255,0.45)",
+            marginBottom: 3,
+          }}>ADMIT ONE</div>
+          <div style={{
+            fontSize: 9.5,
+            fontWeight: 800,
+            letterSpacing: "0.06em",
+            color: "rgba(255,255,255,0.9)",
+            textTransform: "uppercase",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+          }}>{parkName}</div>
+          <div style={{
+            fontSize: 6.5,
+            color: "rgba(255,255,255,0.35)",
+            marginTop: 3,
+            letterSpacing: "0.1em",
+          }}>DISNEY PARKS · VALID FOR ENTRY</div>
+        </div>
+
+        {/* Right notch circles (classic ticket cutout) */}
+        <div style={{
+          position: "absolute",
+          left: 38, top: "50%",
+          transform: "translateY(-50%)",
+          width: 10, height: 10, borderRadius: "50%",
+          background: "rgba(2,8,24,0.6)",
+          border: "1px solid rgba(255,255,255,0.12)",
+        }} />
       </div>
     </motion.div>
   );
 };
 
 const TICKETS = [
-  { top: "6%",  left: "3%",   delay: 0   },
-  { top: "12%", left: "18%",  delay: 0.8 },
-  { top: "4%",  left: "38%",  delay: 1.4 },
-  { top: "15%", left: "55%",  delay: 0.3 },
-  { top: "7%",  left: "70%",  delay: 2.1 },
-  { top: "18%", left: "82%",  delay: 1.0 },
-  { top: "3%",  left: "90%",  delay: 1.7 },
-  { top: "20%", left: "46%",  delay: 2.5 },
+  { top: "4%", left: "2%", delay: 0, rotate: -12, color: "#F59E0B", speed: 160, parkName: "Magic Kingdom" },
+  { top: "28%", left: "16%", delay: 1.2, rotate: 8, color: "#8B5CF6", speed: 110, parkName: "EPCOT" },
+  { top: "58%", left: "5%", delay: 0.5, rotate: -5, color: "#EF4444", speed: 190, parkName: "Disneyland Park" },
+  { top: "78%", left: "20%", delay: 2.0, rotate: 14, color: "#10B981", speed: 80, parkName: "Animal Kingdom" },
+  { top: "5%", left: "67%", delay: 0.9, rotate: -18, color: "#0EA5E9", speed: 145, parkName: "Tokyo DisneySea" },
+  { top: "35%", left: "80%", delay: 1.6, rotate: 6, color: "#EC4899", speed: 120, parkName: "Disneyland Paris" },
+  { top: "62%", left: "86%", delay: 2.8, rotate: -9, color: "#F97316", speed: 200, parkName: "California Adventure" },
+  { top: "88%", left: "72%", delay: 3.2, rotate: 11, color: "#6366F1", speed: 95, parkName: "Hollywood Studios" },
+  { top: "42%", left: "58%", delay: 1.8, rotate: -22, color: "#14B8A6", speed: 175, parkName: "Tokyo Disneyland" },
+  { top: "70%", left: "44%", delay: 0.4, rotate: 16, color: "#D946EF", speed: 130, parkName: "Hong Kong Disneyland" },
+  { top: "85%", left: "1%", delay: 2.3, rotate: -7, color: "#EF4444", speed: 85, parkName: "Shanghai Disneyland" },
+  { top: "18%", left: "40%", delay: 3.8, rotate: 20, color: "#3B82F6", speed: 155, parkName: "Walt Disney Studios" },
 ];
 
 function ParkImage({ park, active }: { park: typeof PARKS[0]; active: boolean }) {
@@ -367,6 +485,8 @@ export default function DisneyParksSection() {
         alignItems: "flex-end",
         padding: "0 clamp(20px, 5vw, 72px)",
         marginBottom: 48,
+        position: "relative",
+        zIndex: 1,
       }}>
         <div>
           <p style={{
@@ -410,6 +530,8 @@ export default function DisneyParksSection() {
         gap: 0,
         padding: "0 clamp(20px, 5vw, 72px)",
         minHeight: 560,
+        position: "relative",
+        zIndex: 1,
       }}>
 
         {/* ── LEFT: Park list ── */}
