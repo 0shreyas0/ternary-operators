@@ -81,19 +81,19 @@ export const HeroCarousel = () => {
 
   useEffect(() => {
     if (isHovered) return;
-    
+
     const timer = setInterval(() => {
       paginate(1);
-    }, 6000);
-    
+    }, 3500);
+
     return () => clearInterval(timer);
   }, [page, isHovered]);
 
   return (
-    <div className="w-full max-w-5xl mx-auto my-12 relative z-10">
+    <div className="w-full max-w-7xl mx-auto my-12 relative z-10">
       <div className="text-center mb-10">
 
-        <motion.p 
+        <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
@@ -104,10 +104,10 @@ export const HeroCarousel = () => {
       </div>
 
       <div className="relative h-[600px] w-full flex items-center justify-center overflow-hidden rounded-[40px] shadow-2xl bg-[#050a18] group"
-           onMouseEnter={() => setIsHovered(true)}
-           onMouseLeave={() => setIsHovered(false)}
-           style={{ perspective: 2000 }}>
-        
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        style={{ perspective: 2000 }}>
+
         {/* Background ambient glowing effect based on current slide image (simulated with standard gradient for performance) */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#1a2035] via-[#050a18] to-[#12182b] opacity-80" />
 
@@ -141,8 +141,8 @@ export const HeroCarousel = () => {
           >
             {/* Full Background Image Section */}
             <div className="absolute inset-0 w-full h-full overflow-hidden">
-              <img 
-                src={currentSlide.image} 
+              <img
+                src={currentSlide.image}
                 alt={currentSlide.title}
                 className="w-full h-full object-cover opacity-80"
               />
@@ -153,7 +153,7 @@ export const HeroCarousel = () => {
             {/* Content Section */}
             <div className="relative z-30 w-full md:w-1/3 text-left">
               <div className="relative z-10 text-white">
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
@@ -161,8 +161,8 @@ export const HeroCarousel = () => {
                 >
                   Chapter {imageIndex + 1}
                 </motion.div>
-                
-                <motion.h3 
+
+                <motion.h3
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.3, type: "spring" }}
@@ -170,8 +170,8 @@ export const HeroCarousel = () => {
                 >
                   {currentSlide.title}
                 </motion.h3>
-                
-                <motion.p 
+
+                <motion.p
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.4 }}
@@ -186,7 +186,7 @@ export const HeroCarousel = () => {
 
         {/* Navigation Buttons */}
         <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-4 md:px-6 pointer-events-none z-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <button 
+          <button
             className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white pointer-events-auto hover:bg-white/30 hover:scale-110 active:scale-95 transition-all shadow-lg"
             onClick={() => paginate(-1)}
           >
@@ -194,7 +194,7 @@ export const HeroCarousel = () => {
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
             </svg>
           </button>
-          <button 
+          <button
             className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white pointer-events-auto hover:bg-white/30 hover:scale-110 active:scale-95 transition-all shadow-lg"
             onClick={() => paginate(1)}
           >
