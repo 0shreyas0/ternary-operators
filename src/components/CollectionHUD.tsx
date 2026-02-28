@@ -16,12 +16,21 @@ export const CollectionHUD = () => {
   const { collected, lastCollected, collectedCount, totalCount, isComplete } = useGame();
   const [open, setOpen] = useState(false);
   const [showHint, setShowHint] = useState(true);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   // Auto-dismiss the hint after 5 seconds
   useEffect(() => {
     const t = setTimeout(() => setShowHint(false), 5000);
     return () => clearTimeout(t);
   }, []);
+
+  // Show success modal when complete
+  useEffect(() => {
+    if (isComplete) {
+      const t = setTimeout(() => setShowSuccessModal(true), 1200);
+      return () => clearTimeout(t);
+    }
+  }, [isComplete]);
 
   const progress = (collectedCount / totalCount) * 100;
 
@@ -50,6 +59,89 @@ export const CollectionHUD = () => {
               <p className="text-white font-sans font-black text-sm tracking-widest uppercase">{lastCollected.name}</p>
               <p className="text-white/50 text-[10px] font-sans font-black tracking-widest uppercase">{collectedCount} / {totalCount} collected</p>
             </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* ── Success Overlay ── */}
+      <AnimatePresence>
+        {showSuccessModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/80 backdrop-blur-md"
+          >
+            {/* Confetti / Sparkles */}
+            {[...Array(20)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-2 h-2 rounded-full"
+                style={{
+                  background: ['#f472b6', '#fbbf24', '#34d399', '#60a5fa'][i % 4],
+                  left: '50%',
+                  top: '50%',
+                }}
+                initial={{ x: 0, y: 0, scale: 0 }}
+                animate={{
+                  x: (Math.random() - 0.5) * window.innerWidth * 0.8,
+                  y: (Math.random() - 0.5) * window.innerHeight * 0.8,
+                  scale: [0, Math.random() + 0.5, 0],
+                  opacity: [0, 1, 0],
+                }}
+                transition={{
+                  duration: 2 + Math.random() * 2,
+                  repeat: Infinity,
+                  ease: "easeOut",
+                  delay: Math.random() * 2
+                }}
+              />
+            ))}
+
+            <motion.div
+              initial={{ scale: 0.8, y: 50, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              transition={{ type: "spring", stiffness: 200, damping: 20 }}
+              className="relative bg-black/60 border border-amber-400/50 p-8 md:p-12 rounded-[2rem] text-center shadow-[0_0_100px_rgba(251,191,36,0.3)] max-w-xl mx-4 backdrop-blur-xl"
+            >
+              <motion.div
+                animate={{ rotate: [0, 10, -10, 0] }}
+                transition={{ repeat: Infinity, duration: 2 }}
+                className="text-7xl mb-6"
+              >
+                👑
+              </motion.div>
+              <h2 className="text-3xl md:text-5xl font-sans font-black tracking-widest uppercase mb-4"
+                style={{
+                  background: 'linear-gradient(90deg, #fbbf24 0%, #f472b6 50%, #fbbf24 100%)',
+                  backgroundSize: '200% auto',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                }}
+              >
+                Royal Court Complete!
+              </h2>
+              <p className="text-white/80 font-sans text-sm md:text-base leading-relaxed mb-8">
+                Phenomenal! You possess the magic touch. You have discovered all {totalCount} hidden princesses scattered across the realms. Your majestic journey is complete!
+              </p>
+
+              <div className="flex flex-wrap gap-2 justify-center mb-8 bg-black/30 p-4 rounded-2xl border border-white/5">
+                {PRINCESS_DATA.map(p => (
+                  <div key={p.id} className="w-10 h-10 rounded border border-white/10 flex items-center justify-center overflow-hidden bg-white/5" style={{ borderColor: `${p.color}40` }}>
+                    <PrincessSprite spriteIndex={p.id} displayWidth={26} cropHeight={48} />
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex gap-4 justify-center">
+                <button
+                  onClick={() => setShowSuccessModal(false)}
+                  className="px-8 py-4 rounded-xl bg-gradient-to-r from-pink-500 to-amber-500 text-white font-black tracking-widest uppercase text-sm hover:scale-105 transition-transform shadow-lg shadow-pink-500/30"
+                >
+                  Continue Exploring
+                </button>
+              </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

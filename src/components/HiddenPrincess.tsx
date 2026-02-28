@@ -33,7 +33,7 @@ export const HiddenPrincess = ({ id, x, y }: HiddenPrincessProps) => {
 
   return (
     <div
-      className="absolute z-20 pointer-events-auto select-none"
+      className="absolute z-[100] pointer-events-auto select-none"
       style={{ left: `${x}%`, top: `${y}%`, transform: 'translate(-50%, -50%)' }}
     >
       {/* Main sprite — always rendered but fades after collection */}
@@ -44,9 +44,9 @@ export const HiddenPrincess = ({ id, x, y }: HiddenPrincessProps) => {
         animate={isCollected
           ? { scale: 0, opacity: 0 }
           : {
-              y: [0, -4, 0, 4, 0],
-              rotate: [0, -3, 0, 3, 0],
-            }
+            y: [0, -4, 0, 4, 0],
+            rotate: [0, -3, 0, 3, 0],
+          }
         }
         transition={isCollected
           ? { duration: 0.4, type: 'spring' }
