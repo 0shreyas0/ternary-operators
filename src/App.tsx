@@ -6,6 +6,7 @@ import FranchiseWorlds from './components/FranchiseWorlds';
 import { FilmReel } from './components/FilmReel';
 // @ts-ignore
 import Footer from './components/parks';
+import DisneyPlusSection from './Disneyplus';
 import { lazy, Suspense } from 'react';
 const Disney3DPreloader = lazy(() => import('./components/Disney3DPreloader'));
 import { HiddenPrincess } from './components/HiddenPrincess';
@@ -80,13 +81,18 @@ function App() {
               ))}
             </section>
 
-            {/* 6 ── Enchanted footer */}
+            {/* 5 ── Parks section */}
             <section id="footer" className="relative scroll-mt-24">
               <div id="parks" />
               <Footer />
               {bySection('footer').map(p => (
                 <HiddenPrincess key={p.id} id={p.id} x={p.x} y={p.y} />
               ))}
+            </section>
+
+            {/* 6 ── Disney+ Streaming section */}
+            <section id="streaming" className="relative">
+              <DisneyPlusSection />
             </section>
 
             {/* ── Fixed Collection HUD (always visible) ── */}
