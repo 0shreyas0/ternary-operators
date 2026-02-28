@@ -126,30 +126,30 @@ const SnowWhitePreloader = ({ onComplete }: { onComplete?: () => void }) => {
       tl.fromTo(
         bookRef.current,
         { rotateX: 35, rotateY: 25, rotateZ: -14, scale: 0.55, opacity: 0 },
-        { rotateX: 12, rotateY: -5, rotateZ: -2, scale: 1.05, opacity: 1, duration: 1.6, ease: 'power2.out' }
+        { rotateX: 12, rotateY: -5, rotateZ: -2, scale: 1.05, opacity: 1, duration: 0.8, ease: 'power2.out' }
       );
 
       // 2. Open the front cover
-      tl.to(frontCoverRef.current, { rotateY: -160, duration: 1.3, ease: 'power3.inOut' }, '+=0.2');
+      tl.to(frontCoverRef.current, { rotateY: -160, duration: 0.7, ease: 'power3.inOut' }, '+=0.1');
 
       // 3. Flip page 1
       tl.to(page1Ref.current, {
         rotateY: -160, z: 12, rotateX: -6, rotateZ: 3,
-        duration: 2.2, ease: 'sine.inOut',
-      }, '+=0.15');
+        duration: 1.1, ease: 'sine.inOut',
+      }, '+=0.08');
 
       // 4. Flip page 2
       tl.to(page2Ref.current, {
         rotateY: -160, z: 10, rotateX: -5, rotateZ: 2,
-        duration: 2.0, ease: 'sine.inOut',
-      }, '-=1.5');
+        duration: 1.0, ease: 'sine.inOut',
+      }, '-=0.75');
 
       // 5. Final zoom into the book
       tl.to(bookRef.current, {
         rotateX: 0, rotateY: 0, rotateZ: 0,
         scale: 28, x: '-60%', y: '30%', opacity: 0,
-        duration: 1.1, ease: 'power2.in',
-      }, '-=0.2');
+        duration: 0.6, ease: 'power2.in',
+      }, '-=0.1');
 
     }, containerRef);
 

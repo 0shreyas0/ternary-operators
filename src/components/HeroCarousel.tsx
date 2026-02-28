@@ -1,35 +1,40 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import posterWalt from '../assets/poster_walt.png';
+import posterSteamboat from '../assets/poster_steamboat_willy.png';
+import posterSnowWhite from '../assets/poster_snow_white.png';
+import posterFrozen from '../assets/poster_frozen.png';
+import posterFamily from '../assets/poster_family.png';
 
 const carouselData = [
   {
     id: 1,
     title: "The Visionary: Walt Disney",
-    image: "https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=1400&q=80",
+    image: posterWalt,
     content: "Walt Disney's boundless imagination and pioneering spirit laid the foundation for an entertainment empire that would touch the hearts of millions across the globe."
   },
   {
     id: 2,
     title: "The Beginning: Steamboat Willie",
-    image: "https://images.unsplash.com/photo-1603190287605-e6ade32fa852?w=1400&q=80",
+    image: posterSteamboat,
     content: "Steamboat Willie (1928) introduced the world to Mickey Mouse. It was one of the first cartoons with synchronized sound, revolutionizing the animation industry and putting Disney on the map."
   },
   {
     id: 3,
     title: "The Gamble: Snow White",
-    image: "https://images.unsplash.com/photo-1518676590629-3dcbd9c5a5c9?w=1400&q=80",
+    image: posterSnowWhite,
     content: "Released in 1937, Snow White and the Seven Dwarfs was dubbed \"Disney's Folly\" during production. It became the first full-length cel animated feature in history — proving critics wrong and founding an empire."
   },
   {
     id: 4,
     title: "The Modern Era: Frozen",
-    image: "https://images.unsplash.com/photo-1548366086-7f1b76106622?w=1400&q=80",
+    image: posterFrozen,
     content: "Frozen (2013) brought the classic Disney musical fairy tale into the modern era. Becoming a global cultural phenomenon, it demonstrated the enduring emotional power of Disney's storytelling."
   },
   {
     id: 5,
     title: "Bringing Families Closer",
-    image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?q=80&w=2060&auto=format&fit=crop",
+    image: posterFamily,
     content: "For nearly a century, Disney magic has been bringing families closer together. Through shared stories, unforgettable characters, and shared memories, the Disney legacy continues to create bonds that span generations."
   }
 ];
