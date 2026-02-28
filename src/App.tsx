@@ -7,6 +7,8 @@ import { FilmReel } from './components/FilmReel';
 // @ts-ignore
 import Footer from './components/parks';
 import DisneyPlusSection from './Disneyplus';
+// @ts-ignore
+import MerchSection from './Merch';
 import { lazy, Suspense } from 'react';
 const Disney3DPreloader = lazy(() => import('./components/Disney3DPreloader'));
 import { HiddenPrincess } from './components/HiddenPrincess';
@@ -93,6 +95,11 @@ function App() {
             {/* 6 ── Disney+ Streaming section */}
             <section id="streaming" className="relative">
               <DisneyPlusSection />
+            </section>
+
+            {/* 7 ── Merch section */}
+            <section id="merch" className="relative">
+              <MerchSection />
             </section>
 
             {/* ── Fixed Collection HUD (always visible) ── */}
