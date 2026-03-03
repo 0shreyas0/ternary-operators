@@ -11,7 +11,6 @@
 
   ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
   ![Typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-  ![Three.js](https://img.shields.io/badge/Three.js-black?style=for-the-badge&logo=three.js&logoColor=white)
   ![Framer Motion](https://img.shields.io/badge/Framer_Motion-white?style=for-the-badge&logo=framer&logoColor=black)
   ![GSAP](https://img.shields.io/badge/GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=white)
   ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
@@ -23,28 +22,29 @@
 
 ## 🌟 About The Project
 
-Welcome to the **Disney Interactive Experience**! This project is a dynamic tribute to the magical worlds of Disney, Marvel, Star Wars, and Pixar. Featuring interactive 3D elements, smooth scrolling, Easter eggs, and a hidden princess mini-game, this application pushes the boundaries of modern web animations that feel incredibly immersive.
+Welcome to the **Disney Interactive Experience**! This project is a dynamic tribute to the magical worlds of Disney, Marvel, Star Wars, and Pixar. Featuring deep interactive elements, smooth scrolling, Easter eggs, and a hidden princess mini-game, this application pushes the boundaries of modern web animations that feel incredibly immersive. The complex 3D animations in this application are achieved with raw CSS/DOM 3D transforms (`transformStyle: "preserve-3d"`) ensuring the animation is lightweight overall. 
 
 > **Note**: For the best interactive experience, please check out the live demo [here](https://walt-disney-redesigned.vercel.app/). 
 
 ## ✨ Core Features
 
-### 📖 Immersive 3D Preloader
-The experience begins with a stunning **3D preloader** featuring an interactive and magical book animation. Built using `@react-three/fiber` and `@react-three/drei`, it creates an unforgettable introduction before the main content is revealed.
+### 🎮 Custom Interactions & Physics
+- **Ralph Chaser Cursor**: Wreck-It Ralph physically follows your cursor across the screen! Based on your movement speed and proximity to hidden items, Ralph features custom 2D sprite sheet animations (walking, idling, and wrecking) with a physics-based delayed follow!
+- **Interactive Physics**: Elements spring, jump, and bounce to life using `matter-js`, mapped directly into the React DOM.
+- **SplitText Navigation**: Mesmerizing character-by-character animation effects on headers and menus.
+- **Dynamic Counters**: Numbers animate dynamically using a custom `CountUp` logic as they scroll into view.
+
+### 📖 Immersive CSS 3D Preloader
+The experience begins with a stunning **3D preloader** featuring an interactive and magical book animation crafted entirely out of DOM elements and CSS `preserve-3d` layered magically with **GSAP** timelines.
 
 ### 🎢 Smooth Scrolling & Parallax Effects
 We utilize **Lenis** for buttery smooth, momentum-based scrolling. Combined with **GSAP** and **Framer Motion**, elements like the Hero Section feature parallax starfields and scroll-linked animations that bring the page to life.
 
-### 🎮 "Hidden Princess" Mini-Game
+### 🕹️ "Hidden Princess" Mini-Game
 Scattered throughout the site are hidden princesses! 
 * Explore the page to find them.
 * Your progress is tracked in a persistent **Collection HUD**.
 * Fully gamifies the browsing experience!
-
-### 🕹️ Custom Interactions
-- **Ralph Chaser Cursor**: A playful interactive layer where Wreck-It Ralph follows your mouse!
-- **SplitText Navigation**: Mesmerizing character-by-character animation effects on headers and menus.
-- **Dynamic Counters**: Numbers animate dynamically using a custom `CountUp` logic as they scroll into view.
 
 ## 🎦 Exploring the Worlds
 
@@ -63,9 +63,8 @@ This application is built with performance and visual excellence in mind:
 | -------- | ------------ |
 | **Framework** | React 19, TypeScript, Vite |
 | **Styling** | Tailwind CSS, Custom Glassmorphism UI |
-| **3D & Canvas** | Three.js, React Three Fiber, React Three Drei |
-| **Animations** | GSAP, Framer Motion |
-| **Physics & Scrolling** | Matter.js, Lenis Scroll |
+| **Animations** | GSAP, Framer Motion, Matter.js Physics |
+| **Scrolling** | Lenis Scroll |
 
 ## 🚀 Getting Started Locally
 
