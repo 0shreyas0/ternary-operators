@@ -79,7 +79,7 @@ To get this project up and running on your local machine, follow these simple st
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/0shreyas0/disney-app.git
    ```
 2. **Navigate to the directory**
    ```bash
